@@ -1,0 +1,33 @@
+.sitename {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 50px;
+    font-family: 'Nosifer', cursive;
+}
+
+.liwrapper {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 50px;
+    margin: 0;
+}
+
+li {
+    list-style: none;
+    border-bottom: transparent 5px solid;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+li:hover {
+    border-bottom:black 5px solid;
+}
+
+.container {
+    width:850px;
+    margin: auto;
+    font-family: 'Roboto', sans-serif;
+}
