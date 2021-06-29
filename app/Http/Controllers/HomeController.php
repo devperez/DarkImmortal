@@ -25,4 +25,9 @@ class HomeController extends Controller
     {
         return view('back.home');
     }
+
+    public function article()
+    {
+        return view('back.write');
+    }
 }

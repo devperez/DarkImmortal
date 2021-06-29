@@ -1,6 +1,47 @@
 @extends('layouts.app')
 
 @section('content')
+<!-- <script
+  src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+  integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+  crossorigin="anonymous"></script>
+<link rel="stylesheet" href="css/login.css">
+
+<div class="login-page">
+  <div class="form">
+    <form class="register-form" method="POST" action="{{ route('register') }}">
+    @csrf
+      <input type="text" placeholder="nom"/>
+      <input type="password" placeholder="mot de passe"/>
+      <input type="text" placeholder="adresse email"/>
+      <div>
+        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+            @error('email')
+            <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
+      <button type="submit">S'inscrire</button>
+      <p class="message">Déjà inscrit(e) ? <a href="#">Connexion</a></p>
+    </form>
+    <form class="login-form" method="POST" action="{{ route('login') }}">
+    @csrf
+      <input type="text" placeholder="nom"/>
+      <input type="password" placeholder="mot de passe"/>
+      <button type="submit">Connexion</button>
+      <p class="message">Pas encore inscrit(e) ? <a href="#">Créer un compte</a></p>
+    </form>
+  </div>
+</div>
+
+<script>
+$('.message a').click(function(){
+   $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+});
+</script>-->
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -54,7 +95,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
+                                    {{ __('Connexion') }}
                                 </button>
 
                                 @if (Route::has('password.request'))
