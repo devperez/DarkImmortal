@@ -17,7 +17,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="adminLTE/css/adminlte.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
-<div class="wrapper">
+<!--<div class="wrapper">
 
   <!-- Navbar -->
  <!-- <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -269,101 +269,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <div class="col-sm-6">
             <h1 class="m-0">Administration</h1>
           </div><!-- /.col -->
-         <!-- <div class="col-sm-6">
+        <!-- <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item active">Starter Page</li>
             </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
+          </div>-->
+        </div>
+      </div>
     </div>
     <!-- /.content-header -->
 
-    <div class="container-fluid">
+    <div class="container">
       @yield("content")
     </div>
-
-    <!-- Main content -->
-    <!-- <div class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="card">
-            <div class="card-header">
-                <h5 class="m-0">Écrire un nouvel article</h5>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">Écrire un article</h5>
-
-                <p class="card-text">
-                  Pour écrire un nouvel article, ça se passe ici.
-                </p>
-
-                <a href="{{route('write') }}" class="btn btn-primary">Écrire</a>
-                <!--<a href="#" class="card-link">Another link</a>-->
-             <!-- </div>
-            </div>
-
-            <div class="card card-primary card-outline">
-            <div class="card-header">
-                <h5 class="m-0">Poster un fichier son</h5>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">Poster un morceau</h5>
-
-                <p class="card-text">
-                  Pour poster de la musique, c'est ici.
-                </p>
-                <a href="#" class="btn btn-primary">Poster un son</a>
-                <!-- <a href="#" class="card-link">Another link</a>-->
-              <!--</div>
-            </div><!-- /.card -->
-          <!--</div>
-          <!-- /.col-md-6 -->
-          <!--<div class="col-lg-6">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="m-0">Poster un clip</h5>
-              </div>
-              <div class="card-body">
-                <h6 class="card-title">Poster un clip vidéo</h6>
-
-                <p class="card-text">Pour poster un clip vidéo, clique sur le bouton.</p>
-                <a href="#" class="btn btn-primary">Poster un clip</a>
-              </div>
-            </div>
-
-            <div class="card card-primary card-outline">
-              <div class="card-header">
-                <h5 class="m-0">Iconographie</h5>
-              </div>
-              <div class="card-body">
-                <h6 class="card-title">Poster une image</h6>
-
-                <p class="card-text">Pour poster une illustration, c'est par ici.</p>
-                <a href="#" class="btn btn-primary">Poster une image</a>
-              </div>
-            </div>
-          </div>
-          <!-- /.col-md-6 -->
-        <!--</div>
-        <!-- /.row -->
-      <!--</div><!-- /.container-fluid -->
-    <!--</div>
-    <!-- /.content -->
-  <!--</div>
-  /.content-wrapper -->
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-    <div class="p-3">
-      <h5>Title</h5>
-      <p>Sidebar content</p>
-    </div>
-  </aside>
-  <!-- /.control-sidebar -->
 
   <!-- Main Footer -->
   <footer class="main-footer" style="position:absolute; bottom:0;">

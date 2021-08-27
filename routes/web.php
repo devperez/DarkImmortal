@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NavController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,4 @@ Route::get('/groupes', [NavController::class, 'groupes'])->name('groupes');
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/write', [HomeController::class, 'article'])->name('write');
+Route::post('/upload', [ImageController::class, 'upload']);
