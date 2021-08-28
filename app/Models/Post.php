@@ -16,6 +16,7 @@ class Post extends Model
         'pays',
         'genre',
         'image',
+        'album',
     ];
     use HasFactory;
     protected $table = 'Posts';

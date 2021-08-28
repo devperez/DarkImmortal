@@ -230,7 +230,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="#" class="nav-link active">
               <i class="far fa-circle nav-icon"></i>
               <p>
-                Poster du son
+                Voir tous les posts
                 <!--<span class="right badge badge-danger">New</span>-->
               </p>
             </a>
@@ -239,7 +239,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="#" class="nav-link active">
               <i class="far fa-circle nav-icon"></i>
               <p>
-                Poster un clip
+                Voir tous les sons postés
                 <!--<span class="right badge badge-danger">New</span>-->
               </p>
             </a>
@@ -248,7 +248,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="#" class="nav-link active">
               <i class="far fa-circle nav-icon"></i>
               <p>
-                Poster une image
+                Voir tous les clips postés
+                <!--<span class="right badge badge-danger">New</span>-->
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link active">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+                Voir toutes les images postées
                 <!--<span class="right badge badge-danger">New</span>-->
               </p>
             </a>

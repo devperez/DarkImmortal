@@ -4,12 +4,23 @@
 
 <h3>Rédaction d'un article</h3>
 <hr>
-<form>
-    <textarea class="container">
+<form action="{{ route('posts.store') }}" method="POST">
+@csrf    
+    <label>Nom du groupe : </label>
+    <input class="container" name="groupe"/>
+    <label>Pays d'origine :</label>
+    <input class="container" name="pays"/>
+    <label>Titre du morceau :</label>
+    <input class="container" name="titre"/>
+    <label>Album :</label>
+    <input class="container" name="album" />
+    <label>Genre :</label>
+    <input class="container" name="genre" style="margin-bottom:50px" />
+    <textarea name="post" class="container">
     Allons-y, Alonzo !
     </textarea>
 
-    <button class="btn btn-primary" style="margin-top:100px">Envoyer !</button>
+    <button class="btn btn-primary" style="margin-top:50px">Envoyer !</button>
 </form>
 
     <script src="https://cdn.tiny.cloud/1/kjpm3b2ydsyvpgvasapxjnjqny49qu9wpn2xihd8hlfxftp2/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
@@ -20,7 +31,7 @@
             image_class_list: [
             {title: 'img-responsive', value: 'img-responsive'},
             ],
-            height: 500,
+            height: 300,
             setup: function (editor) {
                 editor.on('init change', function () {
                     editor.save();

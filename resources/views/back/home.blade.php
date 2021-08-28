@@ -23,15 +23,15 @@
 
         <div class="card card-primary card-outline">
           <div class="card-header">
-            <h5 class="m-0">Poster un fichier son</h5>
+            <h5 class="m-0">Retrouver tous les posts</h5>
           </div>
           <div class="card-body">
-            <h5 class="card-title">Poster un morceau</h5>
+            <h5 class="card-title">Chercher</h5>
 
             <p class="card-text">
-              Pour poster de la musique, c'est ici.
+              Pour trouver un post, c'est par ici.
             </p>
-            <a href="#" class="btn btn-primary">Poster un son</a>
+            <a href="#" class="btn btn-primary">Rechercher un post</a>
               <!-- <a href="#" class="card-link">Another link</a>-->
           </div>
         </div><!-- /.card -->

@@ -13,7 +13,7 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('Posts', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->string('titre');
@@ -24,6 +24,7 @@ class CreatePostsTable extends Migration
             $table->string('pays');
             $table->string('genre');
             $table->string('image');
+            $table->string('album');
         });
     }
 

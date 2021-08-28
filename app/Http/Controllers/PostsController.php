@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
+
 
 class PostsController extends Controller
 {
@@ -34,7 +36,22 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request);
+        $request->validate([
+            'groupe'=>'required|max:255',
+            'pays'=>'required|max:255',
+        ]);
+        Post::create([
+            'groupe'=>$request->groupe,
+            'pays'=>$request->pays,
+            'titre'=>$request->titre,
+            'morceau'=>$request->titre,
+            'album'=>$request->album,
+            'article'=>$request->post,
+            'genre'=>$request->genre,
+        ]);
+
+        return redirect()->back();
     }
 
     /**
