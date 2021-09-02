@@ -15,7 +15,9 @@ class PostsController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::latest()->paginate(10);
+
+        return view('back.touslesposts', compact('posts'))->with(request()->input('page'));
     }
 
     /**
@@ -36,18 +38,22 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
+        //dd($request->post);
         $request->validate([
             'groupe'=>'required|max:255',
             'pays'=>'required|max:255',
         ]);
+        
+        $article = $request->post;
+        $article = strip_tags($article); //on fait sauter le formatage avec les balises
+        //dd($article);
         Post::create([
             'groupe'=>$request->groupe,
             'pays'=>$request->pays,
             'titre'=>$request->titre,
             'morceau'=>$request->titre,
             'album'=>$request->album,
-            'article'=>$request->post,
+            'article'=>$article,
             'genre'=>$request->genre,
         ]);
 

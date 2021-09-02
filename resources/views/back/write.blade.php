@@ -1,7 +1,6 @@
 @extends('back.layout')
 
 @section('content')
-
 <h3>Rédaction d'un article</h3>
 <hr>
 <form action="{{ route('posts.store') }}" method="POST">
@@ -16,8 +15,7 @@
     <input class="container" name="album" />
     <label>Genre :</label>
     <input class="container" name="genre" style="margin-bottom:50px" />
-    <textarea name="post" class="container">
-    Allons-y, Alonzo !
+    <textarea name="post" class="container" placeholder="Ton article">
     </textarea>
 
     <button class="btn btn-primary" style="margin-top:50px">Envoyer !</button>
@@ -27,7 +25,9 @@
     <script>
         tinymce.init({
             selector: 'textarea',
-
+            encoding: 'utf-8',
+            
+            
             image_class_list: [
             {title: 'img-responsive', value: 'img-responsive'},
             ],

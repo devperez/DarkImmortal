@@ -173,7 +173,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <img src="adminLTE/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div> -->
         <div class="info">
-          <a href="#" class="d-block">{{Auth::user() -> name}}</a>
+          <a href="{{ route('home') }}" class="d-block">{{Auth::user() -> name}}</a>
         </div>
       </div>
 
@@ -218,7 +218,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </ul>
           </li>-->
           <li class="nav-item">
-            <a href="#" class="nav-link active">
+            <a href="{{route('write') }}" class="nav-link active">
               <i class="far fa-circle nav-icon"></i>
               <p>
                 Écrire un article
@@ -227,7 +227,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link active">
+            <a href="{{route('posts.index') }}"  class="nav-link active">
               <i class="far fa-circle nav-icon"></i>
               <p>
                 Voir tous les posts
