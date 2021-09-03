@@ -1,31 +1,21 @@
 @extends('back.layout')
 
 @section('content')
-<h3>Rédaction d'un article</h3>
-<hr>
-<form action="{{ route('posts.store') }}" method="POST">
-@csrf    
-    <label>Nom du groupe : </label>
-    <input class="container" name="groupe"/>
-    <label>Pays d'origine :</label>
-    <input class="container" name="pays"/>
-    <label>Titre du morceau :</label>
-    <input class="container" name="titre"/>
-    <label>Album :</label>
-    <input class="container" name="album" />
-    <label>Genre :</label>
-    <input class="container" name="genre" style="margin-bottom:50px" />
-    <textarea name="post" class="container" placeholder="Ton article">
-    </textarea>
+<h2> Éditer l'article {{ $post->groupe }}</h2>
 
-    <button class="btn btn-primary" style="margin-top:50px">Envoyer !</button>
+<form action="{{ route('posts.update','id') }}" method="POST">
+    <label>Nom du groupe</label>
+    <input value="{{ $post->groupe }}" /> 
+    <textarea>{{ $post->article}}</textarea>
+    @csrf
+    <button class="btn btn-primary">Valider les changements</button>
 </form>
 
-    <script src="https://cdn.tiny.cloud/1/kjpm3b2ydsyvpgvasapxjnjqny49qu9wpn2xihd8hlfxftp2/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/kjpm3b2ydsyvpgvasapxjnjqny49qu9wpn2xihd8hlfxftp2/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
         tinymce.init({
             selector: 'textarea',
-            entity_encoding: 'raw',
+            encoding: 'xml',
             
             
             image_class_list: [
@@ -69,7 +59,5 @@
                 input.click();
             }
         });
-
 </script>
-
 @endsection

@@ -44,16 +44,13 @@ class PostsController extends Controller
             'pays'=>'required|max:255',
         ]);
         
-        $article = $request->post;
-        $article = strip_tags($article); //on fait sauter le formatage avec les balises
-        //dd($article);
         Post::create([
             'groupe'=>$request->groupe,
             'pays'=>$request->pays,
             'titre'=>$request->titre,
             'morceau'=>$request->titre,
             'album'=>$request->album,
-            'article'=>$article,
+            'article'=>$request->post,
             'genre'=>$request->genre,
         ]);
 
@@ -68,7 +65,10 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        //
+        //dd($id);
+        $post = Post::findOrFail($id);
+        //dd($post);
+        return view('back.show', compact('post'));
     }
 
     /**
@@ -79,7 +79,9 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        //dd($post);
+        return view('back.edit', compact('post'));
     }
 
     /**
