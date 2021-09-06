@@ -1,6 +1,11 @@
 @extends('back.layout')
 
 @section('content')
+<!-- Include the Quill library -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<!-- Include stylesheet -->
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
 <h3>Rédaction d'un article</h3>
 <hr>
 <form action="{{ route('posts.store') }}" method="POST">
@@ -13,63 +18,31 @@
     <input class="container" name="titre"/>
     <label>Album :</label>
     <input class="container" name="album" />
+    <label>Illustration :</label>
+    <div class="container" style="display:flex; align-items:center; justify-content:space-evenly;">
+        <input type='file' class="container" name="image" onchange='preview()'/>
+        <img id="frame" width="100px" height="100px" type="hidden"/><br />
+    </div>
     <label>Genre :</label>
     <input class="container" name="genre" style="margin-bottom:50px" />
-    <textarea name="post" class="container" placeholder="Ton article">
-    </textarea>
 
+    <div id="quill_editor"></div>
+<input type="hidden" id="quill_html" name="post"></input>
     <button class="btn btn-primary" style="margin-top:50px">Envoyer !</button>
 </form>
 
-    <script src="https://cdn.tiny.cloud/1/kjpm3b2ydsyvpgvasapxjnjqny49qu9wpn2xihd8hlfxftp2/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>
-        tinymce.init({
-            selector: 'textarea',
-            entity_encoding: 'raw',
-            
-            
-            image_class_list: [
-            {title: 'img-responsive', value: 'img-responsive'},
-            ],
-            height: 300,
-            setup: function (editor) {
-                editor.on('init change', function () {
-                    editor.save();
-                });
-            },
-            plugins: [
-                "advlist autolink lists link image charmap print preview anchor",
-                "searchreplace visualblocks code fullscreen",
-                "insertdatetime media table contextmenu paste imagetools"
-            ],
-            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image ",
+<script>
+//preview de l'image
+function preview() {
+    frame.src=URL.createObjectURL(event.target.files[0]);
+}
 
-            image_title: true,
-            automatic_uploads: true,
-            images_upload_url: '/upload',
-            file_picker_types: 'image',
-            file_picker_callback: function(cb, value, meta) {
-                var input = document.createElement('input');
-                input.setAttribute('type', 'file');
-                input.setAttribute('accept', 'image/*');
-                input.onchange = function() {
-                    var file = this.files[0];
-
-                    var reader = new FileReader();
-                    reader.readAsDataURL(file);
-                    reader.onload = function () {
-                        var id = 'blobid' + (new Date()).getTime();
-                        var blobCache =  tinymce.activeEditor.editorUpload.blobCache;
-                        var base64 = reader.result.split(',')[1];
-                        var blobInfo = blobCache.create(id, file, base64);
-                        blobCache.add(blobInfo);
-                        cb(blobInfo.blobUri(), { title: file.name });
-                    };
-                };
-                input.click();
-            }
-        });
-
+    var quill = new Quill('#quill_editor', {
+            theme: 'snow'
+    });
+   quill.on('text-change', function(delta, oldDelta, source) {
+        document.getElementById("quill_html").value = quill.root.innerHTML;
+    });
 </script>
 
 @endsection

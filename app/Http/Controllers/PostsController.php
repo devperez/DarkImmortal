@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
-
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
 
 class PostsController extends Controller
 {
@@ -38,12 +39,34 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->post);
+        //dd($request);
         $request->validate([
             'groupe'=>'required|max:255',
             'pays'=>'required|max:255',
         ]);
-        
+
+//         if ($request->hasFile('image')) {
+//             //  Let's do everything here
+//             if ($request->file('image')->isValid()) {
+//                 //
+//                 $validated = $request->validate([
+//                     'name' => 'string',
+//                     'image' => 'mimes:jpeg,png',
+//                 ]);
+//                 $extension = $request->image->extension();
+//                 $request->image->storeAs('/public', $validated['name'].".".$extension);
+//                 $url = Storage::url($validated['name'].".".$extension);
+//                 $file = File::create([
+//                     'name' => $validated['name'],
+//                     'url' => $url,
+//         ]);
+//         Session::flash('success', "Success!");
+//         return redirect()->back();
+//     }
+// }
+// abort(500, 'Could not upload image :(');
+
+
         Post::create([
             'groupe'=>$request->groupe,
             'pays'=>$request->pays,
@@ -67,8 +90,10 @@ class PostsController extends Controller
     {
         //dd($id);
         $post = Post::findOrFail($id);
+        //dd($post['article']);
+        $article=strip_tags($post['article']);
         //dd($post);
-        return view('back.show', compact('post'));
+        return view('back.show', compact('post', 'article'));
     }
 
     /**
@@ -93,7 +118,26 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'groupe'=>'required',
+            'pays'=>'required',
+            'titre'=>'required',
+            'album'=>'required',
+            'genre'=>'required',
+            'article'=>'required',
+        ]);
+
+        Post::where('id',$id)->update([
+            'groupe'=>$request->groupe,
+            'pays'=>$request->pays,
+            'titre'=>$request->titre,
+            'album'=>$request->album,
+            'genre'=>$request->genre,
+            'article'=>$request->article,
+            'image'=>$request->image,
+        ]);
+
+        return redirect()->route('posts.index');
     }
 
     /**

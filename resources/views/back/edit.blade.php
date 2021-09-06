@@ -1,63 +1,40 @@
 @extends('back.layout')
 
 @section('content')
-<h2> Éditer l'article {{ $post->groupe }}</h2>
+<!-- Include the Quill library -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<!-- Include stylesheet -->
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
-<form action="{{ route('posts.update','id') }}" method="POST">
+<h2> Éditer l'article {{ $post->groupe }}</h2>
+<form action="{{ route('posts.update', $post->id) }}" method="POST">
     <label>Nom du groupe</label>
-    <input value="{{ $post->groupe }}" /> 
-    <textarea>{{ $post->article}}</textarea>
+    <input value="{{ $post->groupe }}" class="container" name="groupe" />
+    <label>Pays d'origine :</label>
+    <input value="{{ $post->pays }}" class="container" name="pays"/>
+    <label>Titre du morceau :</label>
+    <input value="{{ $post->titre }}" class="container" name="titre"/>
+    <label>Album :</label>
+    <input value="{{ $post->album }}" class="container" name="album" />
+    <label>Illustration:</label>
+    <input value="{{ $post->image }}" class="container" name="image" />
+    <label>Genre :</label>
+    <input value="{{ $post->genre }}" class="container" name="genre" style="margin-bottom:50px" />
+    <!-- <textarea name="article">{{ $post->article}}</textarea> -->
+    
+    <input value="{{ $post->article }}" id="quill_editor" name="post" class="container"></input>
     @csrf
-    <button class="btn btn-primary">Valider les changements</button>
+    <button class="btn btn-primary" style="margin-top:50px">Valider les changements</button>
+    @method('PUT')
 </form>
 
-<script src="https://cdn.tiny.cloud/1/kjpm3b2ydsyvpgvasapxjnjqny49qu9wpn2xihd8hlfxftp2/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>
-        tinymce.init({
-            selector: 'textarea',
-            encoding: 'xml',
-            
-            
-            image_class_list: [
-            {title: 'img-responsive', value: 'img-responsive'},
-            ],
-            height: 300,
-            setup: function (editor) {
-                editor.on('init change', function () {
-                    editor.save();
-                });
-            },
-            plugins: [
-                "advlist autolink lists link image charmap print preview anchor",
-                "searchreplace visualblocks code fullscreen",
-                "insertdatetime media table contextmenu paste imagetools"
-            ],
-            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image ",
-
-            image_title: true,
-            automatic_uploads: true,
-            images_upload_url: '/upload',
-            file_picker_types: 'image',
-            file_picker_callback: function(cb, value, meta) {
-                var input = document.createElement('input');
-                input.setAttribute('type', 'file');
-                input.setAttribute('accept', 'image/*');
-                input.onchange = function() {
-                    var file = this.files[0];
-
-                    var reader = new FileReader();
-                    reader.readAsDataURL(file);
-                    reader.onload = function () {
-                        var id = 'blobid' + (new Date()).getTime();
-                        var blobCache =  tinymce.activeEditor.editorUpload.blobCache;
-                        var base64 = reader.result.split(',')[1];
-                        var blobInfo = blobCache.create(id, file, base64);
-                        blobCache.add(blobInfo);
-                        cb(blobInfo.blobUri(), { title: file.name });
-                    };
-                };
-                input.click();
-            }
-        });
+<script>
+    var quill = new Quill('#quill_editor', {
+            theme: 'snow'
+    });
+   quill.on('text-change', function(delta, oldDelta, source) {
+        document.getElementById("quill_editor").value = quill.root.innerHTML;
+    });
 </script>
+
 @endsection
