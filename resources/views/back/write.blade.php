@@ -8,7 +8,7 @@
 
 <h3>Rédaction d'un article</h3>
 <hr>
-<form action="{{ route('posts.store') }}" method="POST">
+<form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
 @csrf    
     <label>Nom du groupe : </label>
     <input class="container" name="groupe"/>
@@ -19,17 +19,18 @@
     <label>Album :</label>
     <input class="container" name="album" />
     <label>Illustration :</label>
-    <div class="container" style="display:flex; align-items:center; justify-content:space-evenly;">
+    <div>
         <input type='file' class="container" name="image" onchange='preview()'/>
-        <img id="frame" width="100px" height="100px" type="hidden"/><br />
+        <img id="frame" width="100px" height="100px" type="hidden"/>
     </div>
     <label>Genre :</label>
     <input class="container" name="genre" style="margin-bottom:50px" />
 
     <div id="quill_editor"></div>
-<input type="hidden" id="quill_html" name="post"></input>
-    <button class="btn btn-primary" style="margin-top:50px">Envoyer !</button>
+    <input type="hidden" id="quill_html" name="post"></input>
+    <button type="submit" class="btn btn-primary" style="margin-top:50px">Envoyer !</button>
 </form>
+
 
 <script>
 //preview de l'image

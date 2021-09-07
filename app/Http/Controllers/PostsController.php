@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
 
@@ -39,33 +40,11 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
         $request->validate([
             'groupe'=>'required|max:255',
             'pays'=>'required|max:255',
+            'album'=>'required',
         ]);
-
-//         if ($request->hasFile('image')) {
-//             //  Let's do everything here
-//             if ($request->file('image')->isValid()) {
-//                 //
-//                 $validated = $request->validate([
-//                     'name' => 'string',
-//                     'image' => 'mimes:jpeg,png',
-//                 ]);
-//                 $extension = $request->image->extension();
-//                 $request->image->storeAs('/public', $validated['name'].".".$extension);
-//                 $url = Storage::url($validated['name'].".".$extension);
-//                 $file = File::create([
-//                     'name' => $validated['name'],
-//                     'url' => $url,
-//         ]);
-//         Session::flash('success', "Success!");
-//         return redirect()->back();
-//     }
-// }
-// abort(500, 'Could not upload image :(');
-
 
         Post::create([
             'groupe'=>$request->groupe,
@@ -76,9 +55,67 @@ class PostsController extends Controller
             'article'=>$request->post,
             'genre'=>$request->genre,
         ]);
+        $id = Post::all()->last()->id;
+        //$id = Post::latest()->first('id');
+        //dd($id);
+        
+        //dd($request->hasFile('image'));
+        //dd($request);
+        if ($request->hasFile('image'))
+        {
+            //on récupère le nom du fichier avec sonb extension
+            $filenamewithextension = $request->file('image')->getClientOriginalName();
+            //dd($filenamewithextension);
+            
+            //on récupère le nom du fichier sans l'extension
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+            //dd($filename);
+            
+            //on récupère l'extension
+            $extension = $request->file('image')->getClientOriginalExtension();
+            //dd($extension);
+
+            //on stocke le fichier
+            $filenametostore = $filename. '.'.$extension;
+            //dd($filenametostore);
+            $request->file('image')->storeAs('public/images/', $filenametostore);
+
+            //on uploade en base
+            $img = Image::create([
+                'url'=>storage_path('app/public/images/'.$filenametostore),
+                'name'=>$filenametostore,
+                'post_id'=>$id,
+            ]);
+            
+        
+//         if ($request->hasFile('image')) {
+// //             //  Let's do everything here
+//             if ($request->image('image')->isValid()) {
+// //                 //
+//                 $validated = $request->validate([
+//                     'name' => 'string',
+//                     'image' => 'mimes:jpeg,png',
+//                 ]);
+//                 dd($request->image);
+//                 $extension = $request->image->extension();
+//                 $request->image->storeAs('/public', $validated['name'].".".$extension);
+//                 $url = Storage::url($validated['name'].".".$extension);
+//                 $file = File::create([
+//                     'name' => $validated['name'],
+//                     'url' => $url,
+//         ]);
+//         Session::flash('success', "Success!");
+//         return redirect()->back();
+//    }
+}
+// abort(500, 'Could not upload image :(');
+
+
+        
 
         return redirect()->back();
     }
+
 
     /**
      * Display the specified resource.

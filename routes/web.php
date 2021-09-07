@@ -30,5 +30,5 @@ Route::get('/groupes', [NavController::class, 'groupes'])->name('groupes');
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/write', [HomeController::class, 'article'])->name('write');
-Route::post('/upload', [ImageController::class, 'upload']);
+Route::post('/upload', [ImageController::class, 'upload'])->name('upload');
 Route::resource('/posts',PostsController::class);
