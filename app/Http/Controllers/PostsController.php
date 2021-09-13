@@ -18,8 +18,9 @@ class PostsController extends Controller
     public function index()
     {
         $posts = Post::latest()->paginate(10);
-
-        return view('back.touslesposts', compact('posts'))->with(request()->input('page'));
+        $imgs = Image::all();
+//dd($imgs);
+        return view('back.touslesposts', compact('posts', 'imgs'))->with(request()->input('page'));
     }
 
     /**
@@ -55,8 +56,9 @@ class PostsController extends Controller
             'article'=>$request->post,
             'genre'=>$request->genre,
         ]);
+
+        //on récupère l'id du dernier post entré en base
         $id = Post::all()->last()->id;
-        //$id = Post::latest()->first('id');
         //dd($id);
         
         //dd($request->hasFile('image'));
@@ -82,37 +84,12 @@ class PostsController extends Controller
 
             //on uploade en base
             $img = Image::create([
-                'url'=>storage_path('app/public/images/'.$filenametostore),
+                'url'=>storage_path('public/images/'.$filenametostore),
                 'name'=>$filenametostore,
                 'post_id'=>$id,
             ]);
-            
+        }
         
-//         if ($request->hasFile('image')) {
-// //             //  Let's do everything here
-//             if ($request->image('image')->isValid()) {
-// //                 //
-//                 $validated = $request->validate([
-//                     'name' => 'string',
-//                     'image' => 'mimes:jpeg,png',
-//                 ]);
-//                 dd($request->image);
-//                 $extension = $request->image->extension();
-//                 $request->image->storeAs('/public', $validated['name'].".".$extension);
-//                 $url = Storage::url($validated['name'].".".$extension);
-//                 $file = File::create([
-//                     'name' => $validated['name'],
-//                     'url' => $url,
-//         ]);
-//         Session::flash('success', "Success!");
-//         return redirect()->back();
-//    }
-}
-// abort(500, 'Could not upload image :(');
-
-
-        
-
         return redirect()->back();
     }
 
@@ -127,10 +104,14 @@ class PostsController extends Controller
     {
         //dd($id);
         $post = Post::findOrFail($id);
+        // $imgArray = Image::all()->where('post_id', $id);
+        $imgArray = Image::all();
+        $img = json_decode(json_encode($imgArray, true));
+        //dd($img);
         //dd($post['article']);
         $article=strip_tags($post['article']);
         //dd($post);
-        return view('back.show', compact('post', 'article'));
+        return view('back.show', compact('post', 'img', 'article'));
     }
 
     /**

@@ -7,6 +7,7 @@
     <h1>{{ $post->groupe }}</h1>
     <h2>{{ $post->album }}</h2>
     <p>{{ $post->article }}</p>
+    <img src=" {{ $img->url }}" />
 </div>
 
 @endsection
