@@ -21,6 +21,7 @@
     <label>Illustration :</label>
     <div>
         <input type='file' class="container" name="image" onchange='preview()'/>
+        <input type="hidden" name="MAX_FILE_SIZE" value="100000">
         <img id="frame" width="100px" height="100px" type="hidden"/>
     </div>
     <label>Genre :</label>

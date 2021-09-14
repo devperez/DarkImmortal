@@ -41,31 +41,23 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
         $request->validate([
             'groupe'=>'required|max:255',
             'pays'=>'required|max:255',
             'album'=>'required',
         ]);
 
-        Post::create([
-            'groupe'=>$request->groupe,
-            'pays'=>$request->pays,
-            'titre'=>$request->titre,
-            'morceau'=>$request->titre,
-            'album'=>$request->album,
-            'article'=>$request->post,
-            'genre'=>$request->genre,
-        ]);
 
         //on récupère l'id du dernier post entré en base
-        $id = Post::all()->last()->id;
+        //$id = Post::all()->last()->id;
         //dd($id);
         
         //dd($request->hasFile('image'));
         //dd($request);
         if ($request->hasFile('image'))
         {
-            //on récupère le nom du fichier avec sonb extension
+            //on récupère le nom du fichier avec son extension
             $filenamewithextension = $request->file('image')->getClientOriginalName();
             //dd($filenamewithextension);
             
@@ -78,16 +70,26 @@ class PostsController extends Controller
             //dd($extension);
 
             //on stocke le fichier
-            $filenametostore = $filename. '.'.$extension;
+            $filenametostore = md5(session_id().microtime());
+            $filenametostore = $filenametostore.".$extension";
+            // $filenametostore = $filename. '.'.$extension;
+            // move_uploaded_file($filenametostore,'public/images');
             //dd($filenametostore);
             $request->file('image')->storeAs('public/images/', $filenametostore);
 
             //on uploade en base
-            $img = Image::create([
-                'url'=>storage_path('public/images/'.$filenametostore),
-                'name'=>$filenametostore,
-                'post_id'=>$id,
+
+            Post::create([
+                'groupe'=>$request->groupe,
+                'pays'=>$request->pays,
+                'titre'=>$request->titre,
+                'morceau'=>$request->titre,
+                'album'=>$request->album,
+                'article'=>$request->post,
+                'genre'=>$request->genre,
+                'image'=>public_path('storage/images/'.$filenametostore),
             ]);
+
         }
         
         return redirect()->back();

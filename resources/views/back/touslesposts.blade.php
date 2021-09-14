@@ -17,7 +17,7 @@
             <td>{{ $post->pays }}</td>
             <td>{{ $post->genre }}</td>
             <td>{{ $post->article }}</td>
-            <td><img src="$imgs->url" /></td>
+            <td><img style="width:100px;" src="{{ $post->image }}" /></td>
         <td>
             <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
             <a class="btn btn-info" href="{{ route('posts.show', $post->id) }}">Voir</a>

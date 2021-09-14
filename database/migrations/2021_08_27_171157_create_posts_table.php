@@ -23,7 +23,7 @@ class CreatePostsTable extends Migration
             $table->longText('article');
             $table->string('pays');
             $table->string('genre');
-            $table->string('image');
+            $table->binary('image');
             $table->string('album');
         });
     }
