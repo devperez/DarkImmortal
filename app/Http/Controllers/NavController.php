@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
+
 
 class NavController extends Controller
 {
@@ -13,6 +15,8 @@ class NavController extends Controller
 
     public function groupes()
     {
-        return view('welcome');
+        $posts = Post::latest()->paginate(10);
+        
+        return view('welcome', compact('posts'))->with(request()->input('page'));
     }
 }
