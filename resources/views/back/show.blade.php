@@ -6,8 +6,8 @@
 <div>
     <h1>{{ $post->groupe }}</h1>
     <h2>{{ $post->album }}</h2>
-    <p>{{ $post->article }}</p>
-    <img src=" {{asset($post->image) }}" />
+    <img src=" {{ asset('storage/images/'.$post->image) }}" style="height:100px" />
+    <p>{!! $post->article !!}</p>
 </div>
 
 @endsection

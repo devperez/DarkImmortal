@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class PostsController extends Controller
 {
@@ -18,9 +19,8 @@ class PostsController extends Controller
     public function index()
     {
         $posts = Post::latest()->paginate(10);
-        $imgs = Image::all();
-//dd($imgs);
-        return view('back.touslesposts', compact('posts', 'imgs'))->with(request()->input('page'));
+        
+        return view('back.touslesposts', compact('posts'))->with(request()->input('page'));
     }
 
     /**
@@ -48,37 +48,13 @@ class PostsController extends Controller
             'album'=>'required',
         ]);
 
-
-        //on récupère l'id du dernier post entré en base
-        //$id = Post::all()->last()->id;
-        //dd($id);
         
-        //dd($request->hasFile('image'));
-        //dd($request);
         if ($request->hasFile('image'))
         {
-            //on récupère le nom du fichier avec son extension
-            $filenamewithextension = $request->file('image')->getClientOriginalName();
-            //dd($filenamewithextension);
-            
-            //on récupère le nom du fichier sans l'extension
-            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
-            //dd($filename);
-            
-            //on récupère l'extension
-            $extension = $request->file('image')->getClientOriginalExtension();
-            //dd($extension);
-
-            //on stocke le fichier
-            $filenametostore = md5(session_id().microtime());
-            $filenametostore = $filenametostore.".$extension";
-            // $filenametostore = $filename. '.'.$extension;
-            // move_uploaded_file($filenametostore,'public/images');
-            //dd($filenametostore);
-            $request->file('image')->storeAs('public/images/', $filenametostore);
-
-            //on uploade en base
-
+            $file = $request->file('image');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extention;
+            $file->move('storage/images/', $filename);
             Post::create([
                 'groupe'=>$request->groupe,
                 'pays'=>$request->pays,
@@ -87,9 +63,8 @@ class PostsController extends Controller
                 'album'=>$request->album,
                 'article'=>$request->post,
                 'genre'=>$request->genre,
-                'image'=>public_path('storage/images/'.$filenametostore),
+                'image'=>$filename,
             ]);
-
         }
         
         return redirect()->back();
@@ -107,13 +82,13 @@ class PostsController extends Controller
         //dd($id);
         $post = Post::findOrFail($id);
         // $imgArray = Image::all()->where('post_id', $id);
-        $imgArray = Image::all();
-        $img = json_decode(json_encode($imgArray, true));
+        // $imgArray = Image::all();
+        // $img = json_decode(json_encode($imgArray, true));
         //dd($img);
         //dd($post['article']);
         $article=strip_tags($post['article']);
         //dd($post);
-        return view('back.show', compact('post', 'img', 'article'));
+        return view('back.show', compact('post', 'article'));
     }
 
     /**

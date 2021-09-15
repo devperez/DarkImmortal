@@ -1,5 +1,7 @@
 @extends('layouts.menu')
 
 @section('content')
-tous les articles
+    @foreach($posts as $post)
+        {{ $post->groupe }}
+    @endforeach
 @endsection
