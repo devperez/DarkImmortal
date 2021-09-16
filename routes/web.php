@@ -5,6 +5,7 @@ use App\Http\Controllers\NavController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\PostsController;
+use App\Models\Post;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,8 @@ use App\Http\Controllers\PostsController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $posts = Post::latest()->paginate(10);
+    return view('welcome', compact('posts'))->with(request()->input('page'));
 });
 
 //Navigation
