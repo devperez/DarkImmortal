@@ -7,7 +7,6 @@ use App\Models\Post;
 use App\Models\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Str;
 
 class PostsController extends Controller
 {
@@ -46,6 +45,7 @@ class PostsController extends Controller
             'groupe'=>'required|max:255',
             'pays'=>'required|max:255',
             'album'=>'required',
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000',
         ]);
 
         

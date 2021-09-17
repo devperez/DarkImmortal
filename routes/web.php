@@ -18,10 +18,7 @@ use App\Models\Post;
 |
 */
 
-Route::get('/', function () {
-    $posts = Post::latest()->paginate(10);
-    return view('welcome', compact('posts'))->with(request()->input('page'));
-});
+Route::get('/', [NavController::class, 'groupes'])->name('groupes');
 
 //Navigation
 Route::get('/about', [NavController::class, 'about'])->name('about');

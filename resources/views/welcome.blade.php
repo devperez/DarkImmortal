@@ -7,7 +7,6 @@
 
 <div class="row laravel-grid" id="">
 @foreach($posts as $post)
-
     <div class="col-md-4 col-xs-4 col-sm-6">
         <div class="card">
             <div class="card-header" style="height:310px;">
@@ -18,10 +17,10 @@
             </div>
             <div class="card-body">
                 <h5 class="card-subtitle mb-2 text-muted">{{ $post->titre }}</h5>
-                <p class="card-text">{!! $post->article !!}</p>
+                <p class="card-text">{!! $post->short_description !!}</p>
             </div>
             <div class="card-footer">
-                <button class="btn btn-primary">Lire</button>
+                <button class="btn btn-primary">Lire plus</button>
             </div>
         </div>
     </div>

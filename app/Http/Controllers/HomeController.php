@@ -25,9 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->paginate(10);
-        
-        return view('welcome', compact('posts'))->with(request()->input('page'));
+        //
     }
 
     public function article()
