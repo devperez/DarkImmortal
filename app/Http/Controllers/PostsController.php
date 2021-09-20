@@ -81,14 +81,7 @@ class PostsController extends Controller
     {
         //dd($id);
         $post = Post::findOrFail($id);
-        // $imgArray = Image::all()->where('post_id', $id);
-        // $imgArray = Image::all();
-        // $img = json_decode(json_encode($imgArray, true));
-        //dd($img);
-        //dd($post['article']);
-        $article=strip_tags($post['article']);
-        //dd($post);
-        return view('back.show', compact('post', 'article'));
+        return view('back.show', compact('post'));
     }
 
     /**
@@ -113,6 +106,7 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //dd($request);
         $request->validate([
             'groupe'=>'required',
             'pays'=>'required',
@@ -121,18 +115,39 @@ class PostsController extends Controller
             'genre'=>'required',
             'article'=>'required',
         ]);
+        //dd($request);
+        if ($request->hasFile('image'))
+        {
+            $file = $request->file('image');
+            //dd($file);
+            $extention = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extention;
+            $file->move('storage/images/', $filename);
 
-        Post::where('id',$id)->update([
-            'groupe'=>$request->groupe,
-            'pays'=>$request->pays,
-            'titre'=>$request->titre,
-            'album'=>$request->album,
-            'genre'=>$request->genre,
-            'article'=>$request->article,
-            'image'=>$request->image,
-        ]);
+            $post = Post::find($id);
+            $post->groupe =  $request->groupe;
+            $post->pays = $request->pays;
+            $post->titre = $request->titre;
+            $post->morceau = $request->titre;
+            $post->album = $request->album;
+            $post->genre = $request->genre;
+            $post->image = $filename;
+            $post->save();
 
-        return redirect()->route('posts.index');
+            return redirect()->route('home');
+
+        }else{
+        $post = Post::find($id);
+            $post->groupe =  $request->groupe;
+            $post->pays = $request->pays;
+            $post->titre = $request->titre;
+            $post->morceau = $request->titre;
+            $post->album = $request->album;
+            $post->genre = $request->genre;
+            $post->save();
+        
+            return redirect()->route('home');
+        }
     }
 
     /**
@@ -143,6 +158,12 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+         //delete the post
+        $post = Post::findOrFail($id);
+         //dd($user);
+        $post->delete();
+
+        //redirect and message
+        return redirect()->back()->with('success', 'L\'utilisateur a été supprimé avec succès.');
     }
 }

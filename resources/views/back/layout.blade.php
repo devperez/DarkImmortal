@@ -17,7 +17,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="/adminLTE/css/adminlte.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
-<!--<div class="wrapper">
+<div class="wrapper">
 
   <!-- Navbar -->
  <!-- <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -293,15 +293,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
       @yield("content")
     </div>
 
-  <!-- Main Footer -->
-  <footer class="main-footer" style="position:absolute; bottom:0;">
-    <!-- To the right -->
+  <!-- Main Footer-->
+  <!-- <footer class="main-footer" style="position:absolute; bottom:0;">
+    To the right
     <div class="float-right d-none d-sm-inline">
       Metal & Code
     </div>
-    <!-- Default to the left -->
+    Default to the left
     <strong>Copyright &copy; 2021 <a href="https://darkimmortal.com">DarkImmortal</a>.</strong> Tous droits réservés.
-  </footer>
+  </footer> -->
 </div>
 <!-- ./wrapper -->
 

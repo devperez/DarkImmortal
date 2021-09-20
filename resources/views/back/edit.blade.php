@@ -7,7 +7,7 @@
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
 <h2> Éditer l'article {{ $post->groupe }}</h2>
-<form action="{{ route('posts.update', $post->id) }}" method="POST">
+<form action="{{ route('posts.update', $post->id) }}" method="POST" enctype="multipart/form-data">
     <label>Nom du groupe</label>
     <input value="{{ $post->groupe }}" class="container" name="groupe" />
     <label>Pays d'origine :</label>
@@ -16,19 +16,29 @@
     <input value="{{ $post->titre }}" class="container" name="titre"/>
     <label>Album :</label>
     <input value="{{ $post->album }}" class="container" name="album" />
-    <label>Illustration:</label>
-    <input value="{{ $post->image }}" class="container" name="image" />
+    <label>Illustration :</label>
+    <div>
+        <input type='file' class="container" name="image" onchange='preview()'/>
+        <input type="hidden" name="MAX_FILE_SIZE" value="100000">
+        <img id="frame" width="100px" height="100px" src="{{ asset('storage/images/'.$post->image) }}" type="hidden"/>
+    </div>
+    
     <label>Genre :</label>
     <input value="{{ $post->genre }}" class="container" name="genre" style="margin-bottom:50px" />
-    <!-- <textarea name="article">{{ $post->article}}</textarea> -->
+    <input type="hidden" id="quill_editor" />
     
-    <input value="{{ $post->article }}" id="quill_editor" name="post" class="container"></input>
+    <textarea name="article" class="container" style="height:150px">{{ $post->article }}</textarea>
     @csrf
     <button class="btn btn-primary" style="margin-top:50px">Valider les changements</button>
     @method('PUT')
 </form>
 
 <script>
+    //preview image
+    function preview() {
+    frame.src=URL.createObjectURL(event.target.files[0]);
+}
+
     var quill = new Quill('#quill_editor', {
             theme: 'snow'
     });

@@ -20,7 +20,7 @@
                 <p class="card-text">{!! $post->short_description !!}</p>
             </div>
             <div class="card-footer">
-                <button class="btn btn-primary">Lire plus</button>
+                <button onclick="location.href='{{ route('groupe', $post->id) }}'" class="btn btn-primary">Lire plus</button>
             </div>
         </div>
     </div>

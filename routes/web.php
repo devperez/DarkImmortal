@@ -23,11 +23,12 @@ Route::get('/', [NavController::class, 'groupes'])->name('groupes');
 //Navigation
 Route::get('/about', [NavController::class, 'about'])->name('about');
 Route::get('/groupes', [NavController::class, 'groupes'])->name('groupes');
+Route::get('/groupe/{id}', [NavController::class,'show'])->name('groupe');
 
 
 //back office
 Auth::routes();
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [PostsController::class, 'index'])->name('home');
 Route::get('/write', [HomeController::class, 'article'])->name('write');
 Route::post('/upload', [ImageController::class, 'upload'])->name('upload');
 Route::resource('/posts',PostsController::class);

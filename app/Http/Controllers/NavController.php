@@ -21,4 +21,10 @@ class NavController extends Controller
         return view('welcome', compact('posts'))->with(request()->input('page'));
         
     }
+
+    public function show($id)
+    {
+        $post = Post::find($id);
+        return view('groupe', compact('post'));
+    }
 }       

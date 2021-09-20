@@ -7,6 +7,7 @@
         <th>Groupe</th>
         <th>Pays</th>
         <th>Genre</th>
+        <th>Titre</th>
         <th>Article</th>
         <th>Image</th>
         <th width="280px">Action</th>
@@ -16,7 +17,8 @@
             <td>{{ $post->groupe }}</td>
             <td>{{ $post->pays }}</td>
             <td>{{ $post->genre }}</td>
-            <td>{!! $post->article !!}</td>
+            <td>{{ $post->titre }}</td>
+            <td>{!! $post->short_description !!}</td>
             <td><img style="width:100px;" src="{{ asset('storage/images/'.$post->image) }}" /></td>
         <td>
             <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
