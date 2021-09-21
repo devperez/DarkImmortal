@@ -24,6 +24,6 @@ class Post extends Model
 
     public function getShortDescriptionAttribute()
     {
-        return Str::words($this->article, 50, ' >>>>');
+        return Str::words($this->article, 45, ' >>>>');
     }
 }

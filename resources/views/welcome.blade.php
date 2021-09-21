@@ -7,7 +7,7 @@
 
 <div class="row laravel-grid" id="">
 @foreach($posts as $post)
-    <div class="col-md-4 col-xs-4 col-sm-6">
+    <div class="col-md-4 col-xs-4 col-sm-4" style="margin-bottom:20px">
         <div class="card">
             <div class="card-header" style="height:310px;">
                 <div class="pull-left">
@@ -15,7 +15,7 @@
                 </div>
                 <img src="{{ asset('storage/images/'.$post->image) }}" class="card-img-top" />
             </div>
-            <div class="card-body">
+            <div class="card-body" style="height:330px;">
                 <h5 class="card-subtitle mb-2 text-muted">{{ $post->titre }}</h5>
                 <p class="card-text">{!! $post->short_description !!}</p>
             </div>

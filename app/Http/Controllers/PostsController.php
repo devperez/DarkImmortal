@@ -44,6 +44,7 @@ class PostsController extends Controller
         $request->validate([
             'groupe'=>'required|max:255',
             'pays'=>'required|max:255',
+            'article'=>'required',
             'album'=>'required',
             'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000',
         ]);
@@ -61,8 +62,9 @@ class PostsController extends Controller
                 'titre'=>$request->titre,
                 'morceau'=>$request->titre,
                 'album'=>$request->album,
-                'article'=>$request->post,
+                'article'=>$request->article,
                 'genre'=>$request->genre,
+                'clip'=>$request->clip,
                 'image'=>$filename,
             ]);
         }
@@ -131,6 +133,7 @@ class PostsController extends Controller
             $post->morceau = $request->titre;
             $post->album = $request->album;
             $post->genre = $request->genre;
+            $post->article = $request->article;
             $post->image = $filename;
             $post->save();
 
@@ -144,6 +147,7 @@ class PostsController extends Controller
             $post->morceau = $request->titre;
             $post->album = $request->album;
             $post->genre = $request->genre;
+            $post->article = $request->article;
             $post->save();
         
             return redirect()->route('home');

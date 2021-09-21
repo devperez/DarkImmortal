@@ -11,6 +11,7 @@
     </div>
     <img src=" {{ asset('storage/images/'.$post->image) }}" style="float:left; padding:10px" />
     <p>{!! $post->article !!}</p>
+    {!! $post->clip !!}
 </div>
 
 @endsection

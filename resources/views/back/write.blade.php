@@ -25,11 +25,14 @@
         <img id="frame" width="100px" height="100px" type="hidden"/>
     </div>
     <label>Genre :</label>
-    <input class="container" name="genre" style="margin-bottom:50px" />
+    <input class="container" name="genre" />
 
-    <div id="quill_editor"></div>
-    <input type="hidden" id="quill_html" name="post"></input>
-    <button type="submit" class="btn btn-primary" style="margin-top:50px">Envoyer !</button>
+    <label>Vidéo :</label>
+    <input class="container" name="clip" style="margin-bottom:50px" />
+
+    <div id="quill_editor" style="height:150px"></div>
+    <input type="hidden" id="quill_html" name="article"></input>
+    <button type="submit" class="btn btn-primary" style="margin-top:25px">Envoyer !</button>
 </form>
 
 
@@ -39,12 +42,12 @@ function preview() {
     frame.src=URL.createObjectURL(event.target.files[0]);
 }
 
-    var quill = new Quill('#quill_editor', {
-            theme: 'snow'
-    });
-   quill.on('text-change', function(delta, oldDelta, source) {
-        document.getElementById("quill_html").value = quill.root.innerHTML;
-    });
+var quill = new Quill('#quill_editor', {
+    theme: 'snow'
+});
+quill.on('text-change', function(delta, oldDelta, source) {
+    document.getElementById("quill_html").value = quill.root.innerHTML;
+});
 </script>
 
 @endsection
