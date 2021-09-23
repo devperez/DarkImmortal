@@ -1,5 +1,6 @@
 @extends('layouts.menu')
 @section('content')
+<div class="container">
     <p>
         Bonjour et soyez les bienvenus sur ce site.<br />
         Certains d'entre vous ont peut-être connu DarkImmortal.magicrpm.com, un blog que j'ai tenu "religieusement" pendant des années sur magicrpm.com. La plateforme n'existe plus depuis plusieurs années et mon blog est également perdu depuis plusieurs années.<br />
@@ -7,4 +8,5 @@
         Au menu : de la musique, du Metal, bien évidemment, mais pas que du Metal. J'espère vous retrouver ici au moins aussi nombreux que sur mon ancien blog.<br />
         Bonnes découvertes !
     </p>
+</div>
 @endsection

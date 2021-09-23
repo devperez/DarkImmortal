@@ -6,17 +6,25 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <link href="{{ asset('css/layout.css') }}" rel="stylesheet">
 
-<div>
-    <h1>{{ $post->groupe }}</h1>
-    <div style="display:flex">
-        <h2>{{ $post->album }}</h2>
-        <h2>//{{ $post->titre }}</h2>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <h1>{{ $post->groupe }}</h1>
+            <div style="display:flex">
+                <h2>{{ $post->album }}</h2>
+                <h2> // {{ $post->titre }}</h2>
+            </div>
+        </div>
     </div>
-    <img src=" {{ asset('storage/images/'.$post->image) }}" style="float:left; padding:10px; width:400px" />
-    <p>{!! $post->article !!}</p>
-    
-    {!! $post->clip !!}
+    <div class="row">
+        <div class="col">
+            <img src=" {{ asset('storage/images/'.$post->image) }}" style="float:left; padding:10px; width:400px" />
+            <p>{!! $post->article !!}</p>
+        </div>
+        <div class="col">
+            <iframe width="800px" height="400px" src="{!! $post->clip !!}"></iframe>
+        </div>
+    </div>
 </div>
-
 @endsection
 

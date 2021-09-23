@@ -24,9 +24,9 @@
                 <li><a href="{{ route('about') }}">À propos</a></li>
             </ul>
         </nav>
-        <div class='container'>
+        <!-- <div class='container max-width-xl'> -->
             @yield('content')
-        </div>
+        <!-- </div> -->
         
     </body>
 </html>

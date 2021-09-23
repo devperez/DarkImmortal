@@ -16,7 +16,7 @@ class NavController extends Controller
 
     public function groupes()
     {
-        $posts = Post::latest()->paginate(10);
+        $posts = Post::latest()->paginate(6);
 
         return view('welcome', compact('posts'))->with(request()->input('page'));
         

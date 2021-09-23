@@ -28,7 +28,7 @@
 
     <label>Vidéo :</label>
     <input value="{{ $post->clip }}" class="container" name="clip" />
-    <div style="margin-bottom:50px">{{ $post->clip }}</div>
+    <iframe src="{!! $post->clip !!}"></iframe>
 
     <input type="hidden" id="quill_editor" />
     

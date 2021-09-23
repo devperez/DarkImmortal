@@ -135,6 +135,7 @@ class PostsController extends Controller
             $post->genre = $request->genre;
             $post->article = $request->article;
             $post->image = $filename;
+            $post->clip = $request->clip;
             $post->save();
 
             return redirect()->route('home');
@@ -148,6 +149,7 @@ class PostsController extends Controller
             $post->album = $request->album;
             $post->genre = $request->genre;
             $post->article = $request->article;
+            $post->clip = $request->clip;
             $post->save();
         
             return redirect()->route('home');
