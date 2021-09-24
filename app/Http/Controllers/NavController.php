@@ -25,6 +25,28 @@ class NavController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-        return view('groupe', compact('post'));
+        $clip = $post->clip;
+        return view('groupe', compact('post', 'clip'));
     }
+
+    public function liste($groupe)
+    {
+        //dd($groupe);
+        $posts = Post::where('groupe','=', $groupe)->get();
+        // dd($liste);
+        return view('liste', compact('groupe','posts'));
+    }
+
+    public function index()
+    {
+        return view('search');
+    }
+
+    public function search($band)
+    {
+        dd($band);
+        // return view('search');
+
+    }
+
 }       

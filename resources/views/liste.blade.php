@@ -1,13 +1,12 @@
-
 @extends('layouts.menu')
-
 @section('content')
 
+<h1 style="display: flex; justify-content:center;" class="mb-4">Liste des articles pour le groupe {{ $groupe }}.</h1>
 
 <div class='container-fluid'>
     <div class="row grid gap-4">
-    @foreach($posts as $post)
-        <div class="col-md-4 col-xs-4 col-sm-4 mb-4">
+@foreach ($posts as $post)
+<div class="col-md-4 col-xs-4 col-sm-4 mb-4">
             <div class="card h-100">
                 <div class="card-header">
                     <div class="pull-left">
@@ -24,12 +23,11 @@
                 </div>
             </div>
         </div>
-    @endforeach
-    </div>
-    {{ $posts->links() }}
+        @endforeach
 </div>
-@endsection
+</div>
 
+@endsection
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

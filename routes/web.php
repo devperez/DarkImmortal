@@ -24,7 +24,9 @@ Route::get('/', [NavController::class, 'groupes'])->name('groupes');
 Route::get('/about', [NavController::class, 'about'])->name('about');
 Route::get('/groupes', [NavController::class, 'groupes'])->name('groupes');
 Route::get('/groupe/{id}', [NavController::class,'show'])->name('groupe');
-
+Route::get('/liste/{groupe}', [NavController::class,'liste'])->name('liste');
+route::get('/search', [NavController::class, 'index'])->name('search');
+route::get('/search/{band}', [NavController::class, 'search'])->name('searchband');
 
 //back office
 Auth::routes();

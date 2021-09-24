@@ -18,15 +18,12 @@
         <nav>
             <ul class="liwrapper">
                 <li><a href="{{ route('groupes') }}">Groupes</a></li>
-                <li><a href="#">Sons</a></li>
-                <li><a href="#">Clips</a></li>
-                <li><a href="#">Iconographies</a></li>
+                <li><a href="{{ route('search') }}">Chercher un groupe</a></li>
+                <li><a href="#">Retrouver tous les clips</a></li>
+                <li><a href="#">J'ai de la chance !</a></li>
                 <li><a href="{{ route('about') }}">À propos</a></li>
             </ul>
         </nav>
-        <!-- <div class='container max-width-xl'> -->
-            @yield('content')
-        <!-- </div> -->
-        
+            @yield('content')        
     </body>
 </html>

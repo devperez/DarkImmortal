@@ -36,3 +36,13 @@ li:hover {
     margin: auto;
     font-family: 'Roboto', sans-serif;
 }
+
+.groupetitre {
+    display: flex;
+    justify-content: center;
+    border-bottom: transparent 5px solid;
+}
+
+.groupetitre:hover {
+    border-bottom:black 5px solid;
+}

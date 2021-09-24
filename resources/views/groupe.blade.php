@@ -9,8 +9,8 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col">
-            <h1>{{ $post->groupe }}</h1>
-            <div style="display:flex">
+            <a href="{{ route('liste', $post->groupe) }}"><h1 class="groupetitre">{{ $post->groupe }}</h1></a>
+            <div style="display:flex; justify-content:center;">
                 <h2>{{ $post->album }}</h2>
                 <h2> // {{ $post->titre }}</h2>
             </div>
@@ -21,9 +21,11 @@
             <img src=" {{ asset('storage/images/'.$post->image) }}" style="float:left; padding:10px; width:400px" />
             <p>{!! $post->article !!}</p>
         </div>
+        @isset($clip)
         <div class="col">
-            <iframe width="800px" height="400px" src="{!! $post->clip !!}"></iframe>
+            <iframe width="800px" height="400px" src="{!! $clip !!}"></iframe>
         </div>
+        @endisset
     </div>
 </div>
 @endsection
