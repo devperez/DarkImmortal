@@ -11,14 +11,23 @@
 
 
 <div class="container">
-    <form method="GET" action="#">
+    <form method="GET" action="'{{ route('searchband') }}'">
+        @csrf
         <input class="container" name="band" id="band" placeholder="Tapez le nom du groupe que vous souhaitez rechercher" />
         <input class="btn btn-primary mt-2 float-right" type="submit" value="Lancer la recherche" class="btn btn-primary"/>
     </form>
 </div>
 
 <div id="success" style="display:none">
-    <p>Voici les résultats de la recherche :</p>
+<p>Voici les résultats de la recherche :</p>
+@isset($posts)
+
+@yield('search')
+
+
+@endisset
+
+    
 </div>
 
 <div id="fail" style="display:none">
@@ -35,11 +44,12 @@
 
             var formData = {
                 band: $("#band").val(),
+                _token: $('input[name="_token"]').val(),
             };
-            // console.log(formData);
+            console.log(formData);
             $.ajax({
                 type:"GET",
-                url:'{{ route('search') }}',
+                url:'{{ route('searchband') }}',
                 data: formData,
                 dataType:"json",
                 encode:true,
@@ -48,6 +58,7 @@
                 $('#success').css('display','block');
             }).fail(function () {
                 $('#fail').css('display','block');
+                setTimeout(function(){$('#fail').fadeOut()},5000);
             })
         });
     });

@@ -39,13 +39,20 @@ class NavController extends Controller
 
     public function index()
     {
+
         return view('search');
     }
 
-    public function search($band)
+    public function search( Request $request)
     {
-        dd($band);
-        // return view('search');
+        //dd($request->band);
+        $posts = Post::where('groupe', '=',$request->band)->get();
+        // dd($posts);
+        if (count($posts) == 0) {
+            return false;
+        }else
+        
+        return true;
 
     }
 
