@@ -45,14 +45,25 @@ class NavController extends Controller
 
     public function search( Request $request)
     {
-        //dd($request->band);
-        $posts = Post::where('groupe', '=',$request->band)->get();
+        $band = $request->band;
+        $posts = Post::where('groupe', '=',$band)->get();
         // dd($posts);
         if (count($posts) == 0) {
             return false;
         }else
-        
-        return true;
+        // $posts = json_decode($posts,true);
+        // dd($posts);
+        foreach ($posts as $post)
+        {
+        $groupe = $post['groupe'];
+        $album = $post['album'];
+        // dump($post);
+
+        }
+        return response()->json([
+            'groupe' => $groupe,
+            'album' => $album,
+        ]);
 
     }
 

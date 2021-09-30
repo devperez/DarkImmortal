@@ -18,16 +18,11 @@
     </form>
 </div>
 
-<div id="success" style="display:none">
-<p>Voici les résultats de la recherche :</p>
-@isset($posts)
+<div id="success" style="display:none" class="container">
 
-@yield('search')
+<h1>{{ $groupe ?? '' }}</h1>
+<h2>{{ $album ?? '' }}</h2>
 
-
-@endisset
-
-    
 </div>
 
 <div id="fail" style="display:none">
@@ -56,6 +51,7 @@
             }).done(function () {
                 $('#band').val('');
                 $('#success').css('display','block');
+                $('#success').append('Articles disponibles' + formData);
             }).fail(function () {
                 $('#fail').css('display','block');
                 setTimeout(function(){$('#fail').fadeOut()},5000);
