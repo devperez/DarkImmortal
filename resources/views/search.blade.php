@@ -11,15 +11,11 @@
 
 
 <div class="container">
-    <form method="GET" action="'{{ route('searchband') }}'">
-        <input class="container" name="band" id="band" placeholder="Tapez le nom du groupe que vous souhaitez rechercher" />
+    <form>
+        <input class="container" name="band" id="band" placeholder="Tapez le nom du groupe que vous souhaitez rechercher" autofocus />
         <!--<input class="btn btn-primary mt-2 float-right" type="submit" value="Lancer la recherche" class="btn btn-primary"/>-->
     </form>
-    @isset($posts)
-    @foreach ($posts as $post)
-    <p>{{ $post->groupe }}</p>
-    @endforeach
-    @endisset
+    
 </div>
 <br />
 <div id="success" class="mt-8">
@@ -27,53 +23,36 @@
 </div>
 
 
-
-
-
+<div id="fail" class="mt-8" style="display:none">
+    <p>Ce groupe ne figure pas sur ce site.</p>
+</div>
 
 <script>
     $(document).ready(function () {
         $("#band").keyup(function(){
             $('#success').html('');
             var groupe = $(this).val();
-            if (groupe != ""){
+            // console.log(groupe);
+            if (groupe){
                 $.ajax({
                     type:"GET",
-                    url:"{{ route('searchband') }}",
+                    url:'{{ route("searchband") }}',
                     data:'band='+ encodeURIComponent(groupe),
                     success: function(data){
-                        if(data != ""){
+                        if(data.length > 500){
+                            $('#band').val('');
+                            // console.log(data.length);
                             $('#success').append(data);
                         }else{
-                            document.getElementById('fail').css('display','block');
+                            //console.log(fail);
+                            $('#fail').css('display','block').delay(400);
+                            setTimeout(function(){$('#fail').fadeOut()},3000);
                         }
                     }
                 });
             }
         });
     });
-
-//
-    //         var formData = {
-    //             band: $("#band").val(),
-    //             _token: $('input[name="_token"]').val(),
-    //         };
-    //         console.log(formData);
-    //         $.ajax({
-    //             type:"GET",
-    //             url:'{{ route('searchband') }}',
-    //             data: formData,
-    //             dataType:"html",
-    //             // encode:true,
-    //         }).done(function (data) {
-    //             $('#band').val('');
-    //             $('#success').html(data);
-    //         }).fail(function () {
-    //             $('#fail').css('display','block');
-    //             setTimeout(function(){$('#fail').fadeOut()},5000);
-    //         })
-    //     });
-    // });
 </script>
 
 @endsection

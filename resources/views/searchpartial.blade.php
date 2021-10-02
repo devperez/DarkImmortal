@@ -1,6 +1,8 @@
 <div class='container-fluid'>
     <div class="row grid gap-4">
     
+    @if (count($posts)>=1)
+
     @foreach($posts as $post)
         <div class="col-md-4 col-xs-4 col-sm-4 mb-4">
             <div class="card h-100">
@@ -20,8 +22,6 @@
             </div>
         </div>
     @endforeach
+    @endif
     </div>
 </div>
-
-
-
