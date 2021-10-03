@@ -15,6 +15,8 @@
 li {
     list-style: none;
     border-bottom: transparent 5px solid;
+    border-top: 5px solid transparent;
+    padding:3px;
 }
 
 a {
@@ -28,7 +30,10 @@ a:hover {
 }
 
 li:hover {
-    border-bottom:black 5px solid;
+    border-top: 5px solid red;
+    border-bottom:red 5px solid;
+    transition: all ease-in-out 500ms;
+
 }
 
 .container {
@@ -44,5 +49,5 @@ li:hover {
 }
 
 .groupetitre:hover {
-    border-bottom:black 5px solid;
+    border-bottom:red 5px solid;
 }

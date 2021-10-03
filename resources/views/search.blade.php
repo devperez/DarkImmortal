@@ -13,7 +13,6 @@
 <div class="container">
     <form>
         <input class="container" name="band" id="band" placeholder="Tapez le nom du groupe que vous souhaitez rechercher" autofocus />
-        <!--<input class="btn btn-primary mt-2 float-right" type="submit" value="Lancer la recherche" class="btn btn-primary"/>-->
     </form>
     
 </div>
