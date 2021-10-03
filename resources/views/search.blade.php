@@ -24,12 +24,12 @@
 
 
 <div id="fail" class="mt-8" style="display:none">
-    <p>Ce groupe ne figure pas sur ce site.</p>
+    <p> Ce groupe ne figure pas sur ce site.</p>
 </div>
 
 <script>
     $(document).ready(function () {
-        $("#band").keyup(function(){
+        $("#band").keypress(function(){
             $('#success').html('');
             var groupe = $(this).val();
             // console.log(groupe);
@@ -40,7 +40,7 @@
                     data:'band='+ encodeURIComponent(groupe),
                     success: function(data){
                         if(data.length > 500){
-                            $('#band').val('');
+                            //$('#band').val('');
                             // console.log(data.length);
                             $('#success').append(data);
                         }else{

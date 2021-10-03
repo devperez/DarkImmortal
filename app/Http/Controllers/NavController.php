@@ -47,7 +47,7 @@ class NavController extends Controller
     {
         $band = $request->band;
         //dd($band);
-        $posts = Post::where('groupe', 'like',$band)->limit(10)->get();
+        $posts = Post::where('groupe', 'like',"%{$band}%")->limit(10)->get();
         // dd($posts);
         return view("searchpartial", compact('posts'));
     }
