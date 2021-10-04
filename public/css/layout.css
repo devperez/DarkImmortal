@@ -5,10 +5,17 @@
     font-family: 'Nosifer', cursive;
 }
 
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: #fff;
+}
+
 .liwrapper {
     display: flex;
     justify-content: space-around;
-    padding-bottom: 50px;
+    padding-bottom: 25px;
     margin: 0;
 }
 
@@ -22,11 +29,13 @@ li {
 a {
     text-decoration: none;
     color: black;
+    transition: ease-in-out 500ms;
+    font-size: larger;
 }
 
 a:hover {
     text-decoration: none;
-    color: black;
+    color: red;
 }
 
 li:hover {
@@ -45,9 +54,13 @@ li:hover {
 .groupetitre {
     display: flex;
     justify-content: center;
-    border-bottom: transparent 5px solid;
 }
 
-.groupetitre:hover {
-    border-bottom:red 5px solid;
+.couv {
+    height: 250px;
+    width:100%;
+    background-attachment:fixed;
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:center center;
 }

@@ -289,9 +289,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </div>
     <!-- /.content-header -->
 
-    <div class="container">
+    <!-- <div class="container"> -->
       @yield("content")
-    </div>
+    <!-- </div> -->
 
   <!-- Main Footer-->
   <!-- <footer class="main-footer" style="position:absolute; bottom:0;">

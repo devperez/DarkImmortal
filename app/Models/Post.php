@@ -18,6 +18,7 @@ class Post extends Model
         'genre',
         'image',
         'album',
+        'couv',
     ];
     use HasFactory;
     protected $table = 'Posts';
@@ -25,5 +26,10 @@ class Post extends Model
     public function getShortDescriptionAttribute()
     {
         return Str::words($this->article, 50, ' >>>>');
+    }
+
+    public function getVeryShortDescriptionAttribute()
+    {
+        return Str::words($this->article,20, '>>>>>');
     }
 }

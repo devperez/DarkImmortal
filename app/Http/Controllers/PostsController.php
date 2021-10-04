@@ -17,7 +17,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->paginate(10);
+        $posts = Post::latest()->paginate(5);
         
         return view('back.touslesposts', compact('posts'))->with(request()->input('page'));
     }
@@ -47,15 +47,21 @@ class PostsController extends Controller
             'article'=>'required',
             'album'=>'required',
             'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000',
+            'couv' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
         ]);
 
         
-        if ($request->hasFile('image'))
-        {
+        
             $file = $request->file('image');
             $extention = $file->getClientOriginalExtension();
             $filename = time().'.'.$extention;
             $file->move('storage/images/', $filename);
+//dd($filename);
+            $file2 = $request->file('couv');
+            $extention2 = $file2->getClientOriginalExtension();
+            $filename2 = time(). '.' .$extention2;
+            $file2->move('storage/images/couv', $filename2);
+
             Post::create([
                 'groupe'=>$request->groupe,
                 'pays'=>$request->pays,
@@ -66,10 +72,11 @@ class PostsController extends Controller
                 'genre'=>$request->genre,
                 'clip'=>$request->clip,
                 'image'=>$filename,
+                'couv'=>$filename2,
             ]);
-        }
         
-        return redirect()->back();
+        
+        return view('back.touslesposts');
     }
 
 
@@ -117,9 +124,37 @@ class PostsController extends Controller
             'genre'=>'required',
             'article'=>'required',
         ]);
-        //dd($request);
-        if ($request->hasFile('image'))
+        // dd($request->clip);
+        if ($request->hasFile('image') && $request->hasFile('couv'))
         {
+            $file = $request->file('image');
+            //dd($file);
+            $extention = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extention;
+            $file->move('storage/images/', $filename);
+
+            $file2 = $request->file('couv');
+            $extention2 = $file2->getClientOriginalExtension();
+            $filename2 = time().'.'.$extention2;
+            $file2 ->move('storage/images/couv/', $filename2);
+
+            $post = Post::find($id);
+            $post->groupe =  $request->groupe;
+            $post->pays = $request->pays;
+            $post->titre = $request->titre;
+            $post->morceau = $request->titre;
+            $post->album = $request->album;
+            $post->genre = $request->genre;
+            $post->article = $request->article;
+            $post->image = $filename;
+            $post->clip = $request->clip;
+            $post->couv = $filename2;
+            $post->save();
+
+            return redirect()->back();
+
+        }elseif ($request->hasFile('image')) {
+
             $file = $request->file('image');
             //dd($file);
             $extention = $file->getClientOriginalExtension();
@@ -134,14 +169,34 @@ class PostsController extends Controller
             $post->album = $request->album;
             $post->genre = $request->genre;
             $post->article = $request->article;
-            $post->image = $filename;
             $post->clip = $request->clip;
+            $post->image = $filename;
             $post->save();
+        
+            return redirect()->back();
 
-            return redirect()->route('home');
+        }else if ($request->hasFile('couv'))
+        {
+            $file2 = $request->file('couv');
+            $extention2 = $file2->getClientOriginalExtension();
+            $filename2 = time().'.'.$extention2;
+            $file2 ->move('storage/images/couv/', $filename2);
 
-        }else{
-        $post = Post::find($id);
+            $post = Post::find($id);
+            $post->groupe =  $request->groupe;
+            $post->pays = $request->pays;
+            $post->titre = $request->titre;
+            $post->morceau = $request->titre;
+            $post->album = $request->album;
+            $post->genre = $request->genre;
+            $post->article = $request->article;
+            $post->clip = $request->clip;
+            $post->couv = $filename2;
+            $post->save();
+        
+        return redirect()->back();
+        }else {
+            $post = Post::find($id);
             $post->groupe =  $request->groupe;
             $post->pays = $request->pays;
             $post->titre = $request->titre;
@@ -151,9 +206,10 @@ class PostsController extends Controller
             $post->article = $request->article;
             $post->clip = $request->clip;
             $post->save();
-        
-            return redirect()->route('home');
+
+            return redirect()->back();
         }
+
     }
 
     /**

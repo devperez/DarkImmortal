@@ -6,42 +6,53 @@
 <!-- Include stylesheet -->
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
-<h2> Éditer l'article {{ $post->groupe }}</h2>
-<form action="{{ route('posts.update', $post->id) }}" method="POST" enctype="multipart/form-data">
-    <label>Nom du groupe</label>
-    <input value="{{ $post->groupe }}" class="container" name="groupe" />
-    <label>Pays d'origine :</label>
-    <input value="{{ $post->pays }}" class="container" name="pays"/>
-    <label>Titre du morceau :</label>
-    <input value="{{ $post->titre }}" class="container" name="titre"/>
-    <label>Album :</label>
-    <input value="{{ $post->album }}" class="container" name="album" />
-    <label>Illustration :</label>
-    <div>
-        <input type='file' class="container" name="image" onchange='preview()'/>
-        <input type="hidden" name="MAX_FILE_SIZE" value="100000">
-        <img id="frame" width="100px" height="100px" src="{{ asset('storage/images/'.$post->image) }}" type="hidden"/>
-    </div>
+    <h2> Éditer l'article {{ $post->groupe }}</h2>
+    <div class="container">
+    <form action="{{ route('posts.update', $post->id) }}" method="POST" enctype="multipart/form-data">
+        <label>Nom du groupe</label>
+        <input value="{{ $post->groupe }}" class="container" name="groupe" />
+        <label>Pays d'origine :</label>
+        <input value="{{ $post->pays }}" class="container" name="pays"/>
+        <label>Titre du morceau :</label>
+        <input value="{{ $post->titre }}" class="container" name="titre"/>
+        <label>Album :</label>
+        <input value="{{ $post->album }}" class="container" name="album" />
+        <label>Illustration :</label>
+        <div>
+            <input type='file' class="container" name="image" onchange='preview()'/>
+            <input type="hidden" name="MAX_FILE_SIZE" value="100000">
+            <img id="frame" width="100px" height="100px" src="{{ asset('storage/images/'.$post->image) }}" type="hidden"/>
+        </div>
+        <label>Couverture :</label>
+        <div>
+            <input type="file" class="container" name="couv" onchange="previewcouv()"/>
+            <input type="hidden" name="MAX_FILE_SIZE" value="100000"/>
+            <img id="frame2" width="250px" height="100px" src="{{ asset('storage/images/couv/'.$post->couv) }}" type="hidden" />
+        </div>
+        <label>Genre :</label>
+        <input value="{{ $post->genre }}" class="container" name="genre" />
+
+        <label>Vidéo :</label>
+        <input value="{{ $post->clip }}" class="container" name="clip" />
+        <iframe src="{!! $post->clip !!}"></iframe>
+
+        <input type="hidden" id="quill_editor" />
     
-    <label>Genre :</label>
-    <input value="{{ $post->genre }}" class="container" name="genre" />
-
-    <label>Vidéo :</label>
-    <input value="{{ $post->clip }}" class="container" name="clip" />
-    <iframe src="{!! $post->clip !!}"></iframe>
-
-    <input type="hidden" id="quill_editor" />
-    
-    <textarea name="article" class="container" style="height:150px">{!! $post->article !!}</textarea>
-    @csrf
-    <button class="btn btn-primary" style="margin-top:50px">Valider les changements</button>
-    @method('PUT')
-</form>
-
+        <textarea name="article" class="container" style="height:150px">{!! $post->article !!}</textarea>
+        @csrf
+        <button class="btn btn-primary" style="margin-top:50px">Valider les changements</button>
+        @method('PUT')
+    </form>
+</div>
 <script>
     //preview image
     function preview() {
     frame.src=URL.createObjectURL(event.target.files[0]);
+}
+
+//preview de la couverture
+function previewcouv() {
+    frame2.src=URL.createObjectURL(event.target.files[0]);
 }
 
     var quill = new Quill('#quill_editor', {
