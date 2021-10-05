@@ -19,6 +19,7 @@ class PostsController extends Controller
     {
         $posts = Post::latest()->paginate(5);
         
+        // dd($posts);
         return view('back.touslesposts', compact('posts'))->with(request()->input('page'));
     }
 
@@ -40,7 +41,7 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
+        // dd($request);
         $request->validate([
             'groupe'=>'required|max:255',
             'pays'=>'required|max:255',
@@ -50,7 +51,12 @@ class PostsController extends Controller
             'couv' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
         ]);
 
-        
+            if ($request->metal)
+            {
+                $metal = 1;
+            }else{
+                $metal = 0;
+            }
         
             $file = $request->file('image');
             $extention = $file->getClientOriginalExtension();
@@ -73,10 +79,11 @@ class PostsController extends Controller
                 'clip'=>$request->clip,
                 'image'=>$filename,
                 'couv'=>$filename2,
+                'metal'=>$metal,
             ]);
         
         
-        return view('back.touslesposts');
+        return redirect()->back();
     }
 
 

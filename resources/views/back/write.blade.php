@@ -36,6 +36,9 @@
 
         <label>Vidéo :</label>
         <input class="container" name="clip" style="margin-bottom:50px" />
+        
+        <label>Doit-on classer ce groupe en Metal ?</label>
+        <input type="checkbox" name="metal"/>
 
         <div id="quill_editor" style="height:150px"></div>
         <input type="hidden" id="quill_html" name="article"></input>

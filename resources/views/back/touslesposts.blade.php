@@ -20,7 +20,9 @@
             <td>{{ $post->titre }}</td>
             <td>{!! $post->very_short_description !!}</td>
             <td><img style="width:100px; margin-bottom:5px" src="{{ asset('storage/images/'.$post->image) }}" /><br />
+            @isset($post->couv)
                 <img style="width:100px" src=" {{ asset('storage/images/couv/'.$post->couv) }}" />
+                @endisset
             </td>
             <td><iframe src="{{ $post->clip }}"></iframe></td>
         <td>

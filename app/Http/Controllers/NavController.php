@@ -16,8 +16,8 @@ class NavController extends Controller
 
     public function groupes()
     {
-        $posts = Post::latest()->paginate(6);
-
+        $posts = Post::where('metal','=',1)->latest()->simplePaginate(8);
+        
         return view('welcome', compact('posts'))->with(request()->input('page'));
         
     }
@@ -34,12 +34,12 @@ class NavController extends Controller
         //dd($groupe);
         $posts = Post::where('groupe','=', $groupe)->get();
         // dd($liste);
+        
         return view('liste', compact('groupe','posts'));
     }
 
     public function index()
     {
-
         return view('search');
     }
 
@@ -50,5 +50,11 @@ class NavController extends Controller
         $posts = Post::where('groupe', 'like',"%{$band}%")->limit(10)->get();
         // dd($posts);
         return view("searchpartial", compact('posts'));
+    }
+
+    public function divers()
+    {
+        $posts = Post::where('metal','=',0)->latest()->paginate(6);
+        return view('divers', compact('posts'));
     }
 }       

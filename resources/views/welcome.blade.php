@@ -3,8 +3,44 @@
 
 @section('content')
 
+<div class="container-fluid" style="margin-bottom:15px">
+    <div class="row grid gap-5"  style="margin-bottom:15px">
+    @foreach($posts as $post)
+        <div class="col-md-3 col-xs-3 col-sm-3 mb-3">
+            <div class="card h-100">
+                <div class="card-image">
+                    <a href="{{ route('groupe', $post->id) }}"><img src="{{ asset('storage/images/'.$post->image) }}" class="card-image" /></a>
+                </div>
+                <div class="card-text">
+                    <span class="date">publié le {{ $post->created_at->format('d/m/Y à H:i:s') }}</span>
+                    <h2>{{ $post->groupe }}</h2>
+                    <p>{!! $post->very_short_description !!}</p>
+                </div>
+                <div class="card-stats">
+                    <div class="stat">
+                        <!-- <p>Lire la suite</p> -->
+                        <!-- <div class="value">4<sup>m</sup></div>
+                        <div class="type">Lire</div>
+                    </div>
+                    <div class="stat border">
+                        <div class="value">5123</div>
+                        <div class="type">views</div>
+                    </div>
+                    <div class="stat">
+                        <div class="value">32</div>
+                        <div class="type">comments</div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
+    </div>
+    <div style="display:flex; justify-content:center; margin-top:50px;">
+        {{ $posts->links() }}
+    </div>
+<div>
 
-<div class='container-fluid'>
+<!-- <div class='container-fluid'>
     <div class="row grid gap-4">
     @foreach($posts as $post)
         <div class="col-md-4 col-xs-4 col-sm-4 mb-4">
@@ -27,7 +63,7 @@
     @endforeach
     </div>
     {{ $posts->links() }}
-</div>
+</div> -->
 @endsection
 
 
