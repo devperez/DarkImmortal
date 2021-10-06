@@ -29,7 +29,7 @@
                 @elseif (Request::path() == 'divers')
                 <!-- <li><a href="{{ route('groupes') }}">Passer à la partie Metal</a></li> -->
                 @endif
-                <li><a href="#">Roulette russe</a></li>
+                <li><a href="{{ route('random') }}" title="un groupe au hasard">Roulette russe</a></li>
                 <li><a href="{{ route('about') }}">À propos</a></li>
             </ul>
         </nav>

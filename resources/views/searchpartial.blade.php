@@ -1,27 +1,25 @@
-<div class='container-fluid'>
+<div class='container-fluid' style="margin-bottom:150px">
     <div class="row grid gap-4">
     
     @if (count($posts)>=1)
 
     @foreach($posts as $post)
-        <div class="col-md-4 col-xs-4 col-sm-4 mb-4">
-            <div class="card h-100">
-                <div class="card-header">
-                    <div class="pull-left">
-                        <h4 class="grid-title">{{ $post->groupe }}</h4>
-                    </div>
-                    <a href="{{ route('groupe', $post->id) }}"><img src="{{ asset('storage/images/'.$post->image) }}" class="card-img-top" /></a>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-subtitle mb-2 text-muted">{{ $post->titre }}</h5>
-                    <p class="card-text">{!! $post->short_description !!}</p>
-                </div>
-                <div class="card-footer">
-                    <button onclick="location.href='{{ route('groupe', $post->id) }}'" class="btn btn-primary">Lire plus</button>
+    <div class="col-md-3 col-xs-3 col-sm-3 mb-3">
+        <div class="card h-100">
+            <div class="card-image">
+                <a href="{{ route('groupe', $post->id) }}"><img src="{{ asset('storage/images/'.$post->image) }}" class="card-image" /></a>
+            </div>
+            <div class="card-text">
+                <span class="date">publié le {{ $post->created_at->format('d/m/Y à H:i:s') }}</span>
+                <h2>{{ $post->groupe }}</h2>
+                <p>{!! $post->very_short_description !!}</p>
+            </div>
+            <div class="card-stats">
+                <div class="stat">
                 </div>
             </div>
         </div>
+    </div>
     @endforeach
     @endif
-    </div>
 </div>

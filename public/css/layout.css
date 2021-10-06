@@ -138,3 +138,14 @@ li:hover {
     color: white;
     padding:10px;
 }
+.imgfond {
+    margin-right:80px;
+    margin-left:80px;
+}
+
+.imgfond::before {
+    content:"";
+    opacity:0.2;
+    background-repeat:no-repeat;
+    background-size:cover;
+}

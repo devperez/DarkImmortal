@@ -26,7 +26,12 @@ class NavController extends Controller
     {
         $post = Post::find($id);
         $clip = $post->clip;
-        return view('groupe', compact('post', 'clip'));
+        $genre = $post->genre;
+        //dd($genre);
+        $alikes = Post::where('genre', "=", $genre)->take(4)->get();
+        
+
+        return view('groupe', compact('post', 'clip', 'alikes'));
     }
 
     public function liste($groupe)
@@ -57,4 +62,12 @@ class NavController extends Controller
         $posts = Post::where('metal','=',0)->latest()->paginate(6);
         return view('divers', compact('posts'));
     }
+
+    public function random()
+    {
+        $post = Post::all()->random(1)->first();
+        // dd($post);
+        return view('random', compact('post'));
+    }
+
 }       

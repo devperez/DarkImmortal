@@ -28,6 +28,8 @@ Route::get('/liste/{groupe}', [NavController::class,'liste'])->name('liste');
 route::get('/search', [NavController::class, 'index'])->name('search');
 route::get('/search/band', [NavController::class, 'search'])->name('searchband');
 route::get('/divers', [NavController::class, 'divers'])->name('divers');
+route::get('/random', [NavController::class, 'random'])->name('random');
+//route::get('/groupe/{id}', [NavController::class,'alike'])->name('alike');
 
 //back office
 Auth::routes();
