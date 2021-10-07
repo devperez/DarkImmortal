@@ -29,7 +29,11 @@ route::get('/search', [NavController::class, 'index'])->name('search');
 route::get('/search/band', [NavController::class, 'search'])->name('searchband');
 route::get('/divers', [NavController::class, 'divers'])->name('divers');
 route::get('/random', [NavController::class, 'random'])->name('random');
-//route::get('/groupe/{id}', [NavController::class,'alike'])->name('alike');
+route::get('/black', [NavController::class, 'black'])->name('black');
+route::get('/death', [NavController::class, 'death'])->name('death');
+route::get('/doom', [NavController::class, 'doom'])->name('doom');
+route::get('/autre', [NavController::class, 'autre'])->name('autre');
+
 
 //back office
 Auth::routes();

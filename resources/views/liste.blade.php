@@ -14,6 +14,11 @@
                 <div class="card-text">
                     <span class="date">{{ $post->created_at }}</span>
                     <h2>{{ $post->groupe }}</h2>
+                    @if($post->morceau)
+                        <p>{{ $post->morceau }}</p>
+                    @else
+                    <p>{{ $post->album }}</p>
+                    @endif
                     <p>{!! $post->very_short_description !!}</p>
                 </div>
                 <div class="card-stats">

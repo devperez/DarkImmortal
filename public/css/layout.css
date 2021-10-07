@@ -5,11 +5,23 @@ body {
 .sitename {
     display: flex;
     justify-content: center;
-    padding-bottom: 50px;
+    /* padding-bottom: 20px; */
     font-family: 'Nosifer', cursive;
 }
 
-nav {
+/* .sitename:hover {
+    color: rgb(255,7,110);
+} */
+
+.nav-link {
+    color:black;
+}
+
+.nav-link:hover{
+    color:rgb(255, 7, 110);
+}
+
+.navigation {
     position: sticky;
     top: 0;
     z-index: 10;
@@ -47,11 +59,14 @@ a:hover {
     color: rgb(255, 7, 110);
 }
 
-li:hover {
+.customli {
+    margin-right: 25px;
+}
+
+.customli:hover {
     border-top: 5px solid rgb(255, 7, 110);
     border-bottom:rgb(255, 7, 110) 5px solid;
     transition: all ease-in-out 500ms;
-
 }
 
 .container {
@@ -81,7 +96,7 @@ li:hover {
     font-family: roboto;
     text-align: center;
     transition: 0.5s ease;
-    margin:30px;
+    margin:15px;
 }
 
 .card:hover {
@@ -137,15 +152,4 @@ li:hover {
     flex-direction: column;
     color: white;
     padding:10px;
-}
-.imgfond {
-    margin-right:80px;
-    margin-left:80px;
-}
-
-.imgfond::before {
-    content:"";
-    opacity:0.2;
-    background-repeat:no-repeat;
-    background-size:cover;
 }

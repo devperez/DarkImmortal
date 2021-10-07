@@ -12,6 +12,11 @@
             <div class="card-text">
                 <span class="date">publié le {{ $post->created_at->format('d/m/Y à H:i:s') }}</span>
                 <h2>{{ $post->groupe }}</h2>
+                @if($post->morceau)
+                        <p>{{ $post->morceau }}</p>
+                    @else
+                    <p>{{ $post->album }}</p>
+                    @endif
                 <p>{!! $post->very_short_description !!}</p>
             </div>
             <div class="card-stats">

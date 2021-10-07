@@ -16,7 +16,7 @@ class NavController extends Controller
 
     public function groupes()
     {
-        $posts = Post::where('metal','=',1)->latest()->simplePaginate(8);
+        $posts = Post::where('metal','=',1)->latest()->simplePaginate(6);
         
         return view('welcome', compact('posts'))->with(request()->input('page'));
         
@@ -28,7 +28,7 @@ class NavController extends Controller
         $clip = $post->clip;
         $genre = $post->genre;
         //dd($genre);
-        $alikes = Post::where('genre', "=", $genre)->take(4)->get();
+        $alikes = Post::where('genre', "=", $genre)->take(3)->get();
         
 
         return view('groupe', compact('post', 'clip', 'alikes'));
@@ -57,12 +57,6 @@ class NavController extends Controller
         return view("searchpartial", compact('posts'));
     }
 
-    public function divers()
-    {
-        $posts = Post::where('metal','=',0)->latest()->paginate(6);
-        return view('divers', compact('posts'));
-    }
-
     public function random()
     {
         $post = Post::all()->random(1)->first();
@@ -70,4 +64,29 @@ class NavController extends Controller
         return view('random', compact('post'));
     }
 
+    public function black()
+    {
+        $posts = Post::where('genre','like','Black Metal')->simplePaginate(6);
+
+        return view('black', compact('posts'));
+    }
+
+    public function death()
+    {
+        $posts = Post::where('genre','like','Death Metal')->simplePaginate(6);
+
+        return view('death', compact('posts'));
+    }
+
+    public function doom()
+    {
+        $posts = Post::where('genre','=','Doom Metal')->simplepaginate(6);
+        return view('doom', compact('posts'));
+    }
+
+    public function autre()
+    {
+        $posts = Post::where('genre','=','autre')->simplepaginate(6);
+        return view('autre', compact('posts'));
+    }
 }       

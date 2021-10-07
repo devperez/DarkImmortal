@@ -20,22 +20,32 @@
         </div>
     </div>
     <div class="row">
-        <div class="col">
+        <div class="col-md-8">
             <img src=" {{ asset('storage/images/'.$post->image) }}" style="float:left; padding:10px; width:400px" />
             <p>{!! $post->article !!}</p>
         </div>
+        <div class="col-md-4">
         @isset($clip)
-        <div class="col">
-            <iframe style="float:right" width="800px" height="400px" src="{!! $clip !!}"></iframe>
-        </div>
-    </div>
+            <iframe style="float:right" width="400px" height="200px" src="{!! $clip !!}"></iframe>
         @endisset
+    </div>
+    <div id="disqus_thread"></div>
+</div>
+
+
+
+
+
+
+
+
+
 
     
-    <div class="container-fluid" style="margin-bottom:150px">
+    <div class="container-fluid" style="margin-bottom:150px;">
         <hr>
         <h3>Vous aimerez peut-être aussi :</h3>
-        <div class="row grid gap-5"  style="margin-bottom:15px">
+        <div class="row grid gap-5"  style="margin-bottom:15px; display:flex; justify-content:center;">
         @foreach($alikes as $alike)
             <div class="col-md-3 col-xs-3 col-sm-3 mb-3">
                 <div class="card h-100">
@@ -57,6 +67,33 @@
         </div>
     </div>
 </div>
+
+<script id="dsq-count-scr" src="//darkimmortal.disqus.com/count.js" async></script>
+
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    
+    var disqus_config = function () {
+    this.page.url =' {{ Request::url() }} ';  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = {{ $post->id }}; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://darkimmortal.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+
+</script>
+
+
+
+
+
+
 
 
 @endsection
