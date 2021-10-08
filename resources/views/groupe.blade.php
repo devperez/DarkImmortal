@@ -13,8 +13,8 @@
             <div class="col" style="margin-top:15px">
                 <a href="{{ route('liste', $post->groupe) }}"><h1 class="hvr-underline-from-center">{{ $post->groupe }}</h1></a>
                 <div style="display:flex; justify-content:center;">
-                    <h2>{{ $post->album }}/</h2>
-                    <h2>/{{ $post->titre }}</h2>
+                    <h2>{{ $post->album }} -/</h2>
+                    <h2>/- {{ $post->morceau }}</h2>
                 </div>
             </div>
         </div>
@@ -25,12 +25,12 @@
             </div>
             @isset($clip)
             <div class="col-lg-4 col-md-12" style="display:flex; justify-content:center; flex-direction:column; margin-top:50px;">
-                <iframe width="400px" allowfullscreen height="200px" src="{!! $clip !!}"></iframe>
+                <iframe width="400px" allowfullscreen height="200px" src="{{ $clip }}"></iframe>
             @endisset
             @isset($paroles)
-            <div style="margin-top:50px;" class="col-lg-6 col-md-12 paroles">
+            <div style="margin-top:50px;" class="col-lg-10 col-md-12 paroles">
                 <p>Paroles :</p>
-                <p>{{ $paroles }}</p>
+                <p>{!! $paroles !!}</p>
             </div>
             @endisset
         </div>

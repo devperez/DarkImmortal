@@ -16,7 +16,7 @@
               Pour écrire un nouvel article, ça se passe ici.
             </p>
 
-            <a href="{{route('write') }}" class="btn btn-primary">Écrire</a>
+            <a href="{{route('posts.create') }}" class="btn btn-primary">Écrire</a>
               <!--<a href="#" class="card-link">Another link</a>-->
           </div>
         </div>

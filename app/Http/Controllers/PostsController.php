@@ -17,10 +17,15 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->paginate(5);
+        $posts = Post::latest()->paginate(10);
         
         // dd($posts);
         return view('back.touslesposts', compact('posts'))->with(request()->input('page'));
+    }
+
+    public function home()
+    {
+        return view('back.home');
     }
 
     /**
@@ -30,7 +35,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+        return view('back.write');
     }
 
     /**
@@ -65,7 +70,7 @@ class PostsController extends Controller
             Post::create([
                 'groupe'=>$request->groupe,
                 'pays'=>$request->pays,
-                'titre'=>$request->titre,
+                // 'titre'=>$request->titre,
                 'morceau'=>$request->morceau,
                 'album'=>$request->album,
                 'article'=>$request->article,
@@ -76,9 +81,9 @@ class PostsController extends Controller
                 'paroles'=>$request->paroles,
             ]);
         
-            $posts = Post::latest()->get();
+            $posts = Post::latest()->simplePaginate(10);
         
-        return view('back.touslesposts', compact('posts'));
+        return view('back.touslesposts', compact('posts'))->with(request()->input('page'));
     }
 
 
@@ -121,7 +126,7 @@ class PostsController extends Controller
         $request->validate([
             'groupe'=>'required',
             'pays'=>'required',
-            'titre'=>'required',
+            'morceau'=>'required',
             'album'=>'required',
             'genre'=>'required',
             'article'=>'required',
@@ -143,7 +148,6 @@ class PostsController extends Controller
             $post = Post::find($id);
             $post->groupe =  $request->groupe;
             $post->pays = $request->pays;
-            $post->titre = $request->titre;
             $post->morceau = $request->morceau;
             $post->album = $request->album;
             $post->genre = $request->genre;
@@ -154,9 +158,9 @@ class PostsController extends Controller
             $post->paroles = $request->paroles;
             $post->save();
 
-            $posts = Post::latest()->get();
+            // $posts = Post::latest()->simplePaginate(10);
         
-            return view('back.touslesposts', compact('posts'));
+            // return view('back.touslesposts', compact('posts'))->with(request()->input('page'));
 
         }elseif ($request->hasFile('image')) {
 
@@ -169,7 +173,6 @@ class PostsController extends Controller
             $post = Post::find($id);
             $post->groupe =  $request->groupe;
             $post->pays = $request->pays;
-            $post->titre = $request->titre;
             $post->morceau = $request->morceau;
             $post->album = $request->album;
             $post->genre = $request->genre;
@@ -180,9 +183,9 @@ class PostsController extends Controller
 
             $post->save();
         
-            $posts = Post::latest()->get();
+            // $posts = Post::latest()->simplePaginate(10);
         
-            return view('back.touslesposts', compact('posts'));
+            // return view('back.touslesposts', compact('posts'))->with(request()->input('page'));
 
         }else if ($request->hasFile('couv'))
         {
@@ -194,7 +197,6 @@ class PostsController extends Controller
             $post = Post::find($id);
             $post->groupe =  $request->groupe;
             $post->pays = $request->pays;
-            $post->titre = $request->titre;
             $post->morceau = $request->morceau;
             $post->album = $request->album;
             $post->genre = $request->genre;
@@ -205,15 +207,14 @@ class PostsController extends Controller
 
             $post->save();
 
-            $posts = Post::latest()->get();
+            // $posts = Post::latest()->simplePaginate(10);
         
-            return view('back.touslesposts', compact('posts'));
+            // return view('back.touslesposts', compact('posts'))->with(request()->input('page'));
 
         }else {
             $post = Post::find($id);
             $post->groupe =  $request->groupe;
             $post->pays = $request->pays;
-            $post->titre = $request->titre;
             $post->morceau = $request->morceau;
             $post->album = $request->album;
             $post->genre = $request->genre;
@@ -223,11 +224,14 @@ class PostsController extends Controller
 
             $post->save();
 
-            $posts = Post::latest()->get();
+            // $posts = Post::latest()->simplePaginate(10);
         
-            return view('back.touslesposts', compact('posts'));
+            // return view('back.touslesposts', compact('posts'))->with(request()->input('page'));
         }
-
+        $posts = Post::simplePaginate(10);
+        
+        // return view('back.touslesposts', compact('posts'))->with(request()->input('page'));
+        return view('back.home');
     }
 
     /**

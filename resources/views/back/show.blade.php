@@ -6,7 +6,7 @@
     <div class=container-fluid>
         <div class="row">
             <div class="col" style="margin-top:15px">
-                <a href="{{ route('liste', $post->groupe) }}"><h1 class="hvr-underline-from-center">{{ $post->groupe }}</h1></a>
+                <h1 class="hvr-underline-from-center">{{ $post->groupe }}</h1>
                 <div style="display:flex; justify-content:center;">
                     <h2>{{ $post->album }}/</h2>
                     <h2>/{{ $post->titre }}</h2>
@@ -23,9 +23,9 @@
                 <iframe width="400px" allowfullscreen height="200px" src="{!! $post->clip !!}"></iframe>
             @endisset
             @isset($post->paroles)
-            <div style="margin-top:50px;" class="col-lg-6 col-md-12 paroles">
+            <div style="margin-top:50px;" class="col-lg-10 col-md-12 paroles">
                 <p>Paroles :</p>
-                <p>{{ $post->paroles }}</p>
+                <p>{!! $post->paroles !!}</p>
             </div>
             @endisset
         </div>

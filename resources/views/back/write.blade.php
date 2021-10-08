@@ -16,7 +16,7 @@
         <label>Pays d'origine :</label>
         <input class="container" name="pays"/>
         <label>Titre du morceau :</label>
-        <input class="container" name="titre"/>
+        <input class="container" name="morceau"/>
         <label>Album :</label>
         <input class="container" name="album" />
         <label>Illustration :</label>
@@ -38,7 +38,7 @@
         <input class="container" name="clip" />
 
         <label>Paroles :</label>
-        <textarea class="container" name="paroles" style="margin-bottom:50px"></textarea>
+        <textarea class="container" name="paroles" style="margin-bottom:50px; height:200px;"></textarea>
 
         <div id="quill_editor" style="height:150px"></div>
         <input type="hidden" id="quill_html" name="article"></input>

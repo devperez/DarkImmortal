@@ -27,7 +27,7 @@ Route::get('/groupe/{id}', [NavController::class,'show'])->name('groupe');
 Route::get('/liste/{groupe}', [NavController::class,'liste'])->name('liste');
 route::get('/search', [NavController::class, 'index'])->name('search');
 route::get('/search/band', [NavController::class, 'search'])->name('searchband');
-route::get('/divers', [NavController::class, 'divers'])->name('divers');
+// route::get('/divers', [NavController::class, 'divers'])->name('divers');
 route::get('/random', [NavController::class, 'random'])->name('random');
 route::get('/black', [NavController::class, 'black'])->name('black');
 route::get('/death', [NavController::class, 'death'])->name('death');
@@ -37,7 +37,5 @@ route::get('/autre', [NavController::class, 'autre'])->name('autre');
 
 //back office
 Auth::routes();
-Route::get('/home', [PostsController::class, 'index'])->name('home');
-Route::get('/write', [HomeController::class, 'article'])->name('write');
-Route::post('/upload', [ImageController::class, 'upload'])->name('upload');
+Route::get('/home', [PostsController::class, 'home'])->name('home');
 Route::resource('/posts',PostsController::class);

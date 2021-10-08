@@ -14,7 +14,7 @@
         <label>Pays d'origine :</label>
         <input value="{{ $post->pays }}" class="container" name="pays"/>
         <label>Titre du morceau :</label>
-        <input value="{{ $post->titre }}" class="container" name="titre"/>
+        <input value="{{ $post->morceau }}" class="container" name="morceau"/>
         <label>Album :</label>
         <input value="{{ $post->album }}" class="container" name="album" />
         <label>Illustration :</label>
@@ -37,7 +37,7 @@
         <iframe src="{!! $post->clip !!}"></iframe>
 <br />
         <label>Paroles :</label>
-        <textarea class="container" name="paroles">{{ $post->paroles }}</textarea>
+        <textarea class="container" name="paroles" style="height:200px">{{ $post->paroles }}</textarea>
 
         <input type="hidden" id="quill_editor" />
     

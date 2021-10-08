@@ -160,7 +160,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="{{ route('home') }}" class="brand-link">
       <!-- <img src="adminLTE/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">-->
       <span class="brand-text font-weight-light">DarkImmortal</span>
     </a>
@@ -218,7 +218,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </ul>
           </li>-->
           <li class="nav-item">
-            <a href="{{route('write') }}" class="nav-link active">
+            <a href="{{route('posts.create') }}" class="nav-link active">
               <i class="far fa-circle nav-icon"></i>
               <p>
                 Écrire un article

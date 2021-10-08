@@ -5,7 +5,7 @@
     <tr>
         <th>Groupe</th>
         <th>Genre</th>
-        <th>Titre</th>
+        <th>Morceau</th>
         <th>Paroles</th>
         <th style="width:200px">Article</th>
         <th>Image</th>
@@ -16,7 +16,7 @@
         <tr>
             <td>{{ $post->groupe }}</td>
             <td>{{ $post->genre }}</td>
-            <td>{{ $post->titre }}</td>
+            <td>{{ $post->morceau }}</td>
             @if( $post->paroles != '')
             <td>
                 <i class="far fa-check-square"></i>
@@ -47,6 +47,7 @@
         </td>
     </tr>
     @endforeach
+    {{ $posts ?? ''->links() }}
+
 </table>
-{{ $posts ?? ''->links() }}
 @endsection
