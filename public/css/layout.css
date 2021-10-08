@@ -9,16 +9,12 @@ body {
     font-family: 'Nosifer', cursive;
 }
 
-/* .sitename:hover {
-    color: rgb(255,7,110);
-} */
-
 .nav-link {
     color:black;
 }
 
 .nav-link:hover{
-    color:rgb(255, 7, 110);
+    color:#ff076e;
 }
 
 .navigation {
@@ -56,7 +52,7 @@ a {
 
 a:hover {
     text-decoration: none;
-    color: rgb(255, 7, 110);
+    color: #ff076e;
 }
 
 .customli {
@@ -64,8 +60,8 @@ a:hover {
 }
 
 .customli:hover {
-    border-top: 5px solid rgb(255, 7, 110);
-    border-bottom:rgb(255, 7, 110) 5px solid;
+    border-top: 5px solid #ff076e;
+    border-bottom:#ff076e 5px solid;
     transition: all ease-in-out 500ms;
 }
 
@@ -120,7 +116,7 @@ a:hover {
 }
 
 .card-text .date {
-    color: rgb(255, 7, 110);
+    color: #ff076e;
     font-size:13px;
 }
 
@@ -142,7 +138,7 @@ a:hover {
     grid-template-rows: 1fr;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
-    background: rgb(255, 7, 110);
+    background: #ff076e;
 }
 
 .card-stats .stat {
@@ -152,4 +148,8 @@ a:hover {
     flex-direction: column;
     color: white;
     padding:10px;
+}
+
+.paroles {
+    border-left: grey 1px solid;
 }

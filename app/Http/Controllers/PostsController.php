@@ -41,28 +41,22 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
+
+        //dd($request);
         $request->validate([
             'groupe'=>'required|max:255',
             'pays'=>'required|max:255',
             'article'=>'required',
             'album'=>'required',
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000',
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
             'couv' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
         ]);
-
-            if ($request->metal)
-            {
-                $metal = 1;
-            }else{
-                $metal = 0;
-            }
-        
+// dd('coucou');
             $file = $request->file('image');
             $extention = $file->getClientOriginalExtension();
             $filename = time().'.'.$extention;
             $file->move('storage/images/', $filename);
-//dd($filename);
+// dd($filename);
             $file2 = $request->file('couv');
             $extention2 = $file2->getClientOriginalExtension();
             $filename2 = time(). '.' .$extention2;
@@ -72,18 +66,19 @@ class PostsController extends Controller
                 'groupe'=>$request->groupe,
                 'pays'=>$request->pays,
                 'titre'=>$request->titre,
-                'morceau'=>$request->titre,
+                'morceau'=>$request->morceau,
                 'album'=>$request->album,
                 'article'=>$request->article,
                 'genre'=>$request->genre,
                 'clip'=>$request->clip,
                 'image'=>$filename,
                 'couv'=>$filename2,
-                'metal'=>$metal,
+                'paroles'=>$request->paroles,
             ]);
         
+            $posts = Post::latest()->get();
         
-        return redirect()->back();
+        return view('back.touslesposts', compact('posts'));
     }
 
 
@@ -149,16 +144,19 @@ class PostsController extends Controller
             $post->groupe =  $request->groupe;
             $post->pays = $request->pays;
             $post->titre = $request->titre;
-            $post->morceau = $request->titre;
+            $post->morceau = $request->morceau;
             $post->album = $request->album;
             $post->genre = $request->genre;
             $post->article = $request->article;
             $post->image = $filename;
             $post->clip = $request->clip;
             $post->couv = $filename2;
+            $post->paroles = $request->paroles;
             $post->save();
 
-            return redirect()->back();
+            $posts = Post::latest()->get();
+        
+            return view('back.touslesposts', compact('posts'));
 
         }elseif ($request->hasFile('image')) {
 
@@ -172,15 +170,19 @@ class PostsController extends Controller
             $post->groupe =  $request->groupe;
             $post->pays = $request->pays;
             $post->titre = $request->titre;
-            $post->morceau = $request->titre;
+            $post->morceau = $request->morceau;
             $post->album = $request->album;
             $post->genre = $request->genre;
             $post->article = $request->article;
             $post->clip = $request->clip;
             $post->image = $filename;
+            $post->paroles = $request->paroles;
+
             $post->save();
         
-            return redirect()->back();
+            $posts = Post::latest()->get();
+        
+            return view('back.touslesposts', compact('posts'));
 
         }else if ($request->hasFile('couv'))
         {
@@ -193,28 +195,37 @@ class PostsController extends Controller
             $post->groupe =  $request->groupe;
             $post->pays = $request->pays;
             $post->titre = $request->titre;
-            $post->morceau = $request->titre;
+            $post->morceau = $request->morceau;
             $post->album = $request->album;
             $post->genre = $request->genre;
             $post->article = $request->article;
             $post->clip = $request->clip;
             $post->couv = $filename2;
+            $post->paroles = $request->paroles;
+
             $post->save();
+
+            $posts = Post::latest()->get();
         
-        return redirect()->back();
+            return view('back.touslesposts', compact('posts'));
+
         }else {
             $post = Post::find($id);
             $post->groupe =  $request->groupe;
             $post->pays = $request->pays;
             $post->titre = $request->titre;
-            $post->morceau = $request->titre;
+            $post->morceau = $request->morceau;
             $post->album = $request->album;
             $post->genre = $request->genre;
             $post->article = $request->article;
             $post->clip = $request->clip;
+            $post->paroles = $request->paroles;
+
             $post->save();
 
-            return redirect()->back();
+            $posts = Post::latest()->get();
+        
+            return view('back.touslesposts', compact('posts'));
         }
 
     }

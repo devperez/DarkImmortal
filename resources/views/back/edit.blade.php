@@ -35,10 +35,13 @@
         <label>Vidéo :</label>
         <input value="{{ $post->clip }}" class="container" name="clip" />
         <iframe src="{!! $post->clip !!}"></iframe>
+<br />
+        <label>Paroles :</label>
+        <textarea class="container" name="paroles">{{ $post->paroles }}</textarea>
 
         <input type="hidden" id="quill_editor" />
     
-        <textarea name="article" class="container" style="height:150px">{!! $post->article !!}</textarea>
+        <textarea name="article" class="container" style="height:150px">{{ $post->article }}</textarea>
         @csrf
         <button class="btn btn-primary" style="margin-top:50px">Valider les changements</button>
         @method('PUT')

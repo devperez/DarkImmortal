@@ -16,7 +16,7 @@ class NavController extends Controller
 
     public function groupes()
     {
-        $posts = Post::where('metal','=',1)->latest()->simplePaginate(6);
+        $posts = Post::latest()->simplePaginate(6);
         
         return view('welcome', compact('posts'))->with(request()->input('page'));
         
@@ -27,11 +27,12 @@ class NavController extends Controller
         $post = Post::find($id);
         $clip = $post->clip;
         $genre = $post->genre;
+        $paroles = $post->paroles;
         //dd($genre);
         $alikes = Post::where('genre', "=", $genre)->take(3)->get();
         
 
-        return view('groupe', compact('post', 'clip', 'alikes'));
+        return view('groupe', compact('post', 'clip', 'paroles', 'alikes'));
     }
 
     public function liste($groupe)

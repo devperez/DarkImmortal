@@ -19,7 +19,7 @@ class Post extends Model
         'image',
         'album',
         'couv',
-        'metal',
+        'paroles',
     ];
     use HasFactory;
     protected $table = 'Posts';
