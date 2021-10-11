@@ -87,7 +87,7 @@ class NavController extends Controller
 
     public function autre()
     {
-        $posts = Post::where('genre','=','autre')->simplepaginate(6);
+        $posts = Post::where('genre','=','Autre')->simplepaginate(6);
         return view('autre', compact('posts'));
     }
 }       

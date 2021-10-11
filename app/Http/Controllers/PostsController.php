@@ -25,7 +25,11 @@ class PostsController extends Controller
 
     public function home()
     {
-        return view('back.home');
+        $posts = Post::latest('id')->first();
+        //$posts = $posts[1];
+        $post = json_decode(json_encode($posts), false);
+        //dd($post);
+        return view('back.home', compact('post'));
     }
 
     /**
@@ -158,10 +162,6 @@ class PostsController extends Controller
             $post->paroles = $request->paroles;
             $post->save();
 
-            // $posts = Post::latest()->simplePaginate(10);
-        
-            // return view('back.touslesposts', compact('posts'))->with(request()->input('page'));
-
         }elseif ($request->hasFile('image')) {
 
             $file = $request->file('image');
@@ -182,10 +182,7 @@ class PostsController extends Controller
             $post->paroles = $request->paroles;
 
             $post->save();
-        
-            // $posts = Post::latest()->simplePaginate(10);
-        
-            // return view('back.touslesposts', compact('posts'))->with(request()->input('page'));
+
 
         }else if ($request->hasFile('couv'))
         {
@@ -207,9 +204,6 @@ class PostsController extends Controller
 
             $post->save();
 
-            // $posts = Post::latest()->simplePaginate(10);
-        
-            // return view('back.touslesposts', compact('posts'))->with(request()->input('page'));
 
         }else {
             $post = Post::find($id);
@@ -224,14 +218,12 @@ class PostsController extends Controller
 
             $post->save();
 
-            // $posts = Post::latest()->simplePaginate(10);
-        
-            // return view('back.touslesposts', compact('posts'))->with(request()->input('page'));
         }
-        $posts = Post::simplePaginate(10);
-        
-        // return view('back.touslesposts', compact('posts'))->with(request()->input('page'));
-        return view('back.home');
+        $posts = Post::latest('id')->first();
+        //$posts = $posts[1];
+        $post = json_decode(json_encode($posts), false);
+        //dd($post);
+        return view('back.home', compact('post'));
     }
 
     /**

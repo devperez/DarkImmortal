@@ -34,7 +34,7 @@
 
         <label>Vidéo :</label>
         <input value="{{ $post->clip }}" class="container" name="clip" />
-        <iframe src="{!! $post->clip !!}"></iframe>
+        {!! $post->clip !!}
 <br />
         <label>Paroles :</label>
         <textarea class="container" name="paroles" style="height:200px">{{ $post->paroles }}</textarea>

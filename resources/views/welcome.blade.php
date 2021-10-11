@@ -23,7 +23,7 @@
                 </div>
                 <div class="card-stats">
                     <div class="stat">
-                        <!-- <p>Lire la suite</p> -->
+                        <p>Publié dans {{ $post->genre }}</p>
                         <!-- <div class="value">4<sup>m</sup></div>
                         <div class="type">Lire</div>
                     </div>

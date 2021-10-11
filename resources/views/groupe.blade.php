@@ -25,7 +25,8 @@
             </div>
             @isset($clip)
             <div class="col-lg-4 col-md-12" style="display:flex; justify-content:center; flex-direction:column; margin-top:50px;">
-                <iframe width="400px" allowfullscreen height="200px" src="{{ $clip }}"></iframe>
+            {!! $clip !!}
+                <!-- <iframe width="400px" allowfullscreen height="200px" src="{{ $clip }}"></iframe> -->
             @endisset
             @isset($paroles)
             <div style="margin-top:50px;" class="col-lg-10 col-md-12 paroles">

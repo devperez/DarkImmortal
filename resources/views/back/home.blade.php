@@ -70,4 +70,43 @@
     <!-- /.content -->
   <!--</div> -->
   <!-- /.content-wrapper -->
+
+  <div class="container">
+    <p>Dernier post en date :</p>
+    <table class="table table-bordered">
+      <tr>
+        <th>Groupe</th>
+        <th>Genre</th>
+        <th>Morceau</th>
+        <th>Paroles</th>
+        <th>Image</th>
+        <th>Clip</th>
+    </tr>
+    
+        <tr>
+            <td>{{ $post->groupe }}</td>
+            <td>{{ $post->genre }}</td>
+            <td>{{ $post->morceau }}</td>
+            @if( $post->paroles != '')
+            <td>
+                <i class="far fa-check-square"></i>
+            </td>
+            @else
+            <td></td>
+            @endif
+            </td>
+            <td><img style="width:75px; margin-bottom:5px" src="{{ asset('storage/images/'.$post->image) }}" /><br />
+            @isset($post->couv)
+                <img style="width:100px" src=" {{ asset('storage/images/couv/'.$post->couv) }}" />
+                @endisset
+            </td>
+            @if($post->clip != '')
+            <td><i class="far fa-check-square"></i></td>
+            @else
+            <td></td>
+            @endif
+        </tr>
+    
+  </table>
+</div>
 @endsection
