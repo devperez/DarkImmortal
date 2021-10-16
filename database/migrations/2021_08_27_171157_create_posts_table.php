@@ -26,6 +26,7 @@ class CreatePostsTable extends Migration
             $table->string('album');
             $table->string('couv');
             $table->longText('paroles');
+            $table->boolean('draft');
         });
     }
 

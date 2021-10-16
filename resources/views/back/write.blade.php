@@ -10,13 +10,16 @@
 <hr>
 <div class="container">
     <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
+    @error('groupe')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
     @csrf    
         <label>Nom du groupe : </label>
-        <input class="container" name="groupe"/>
+        <input id='groupe' class="container @error('groupe') is-invalid @enderror" name="groupe"/>
         <label>Pays d'origine :</label>
         <input class="container" name="pays"/>
         <label>Titre du morceau :</label>
-        <input class="container" name="morceau"/>
+        <input id="morceau" class="container" name="morceau"/>
         <label>Album :</label>
         <input class="container" name="album" />
         <label>Illustration :</label>
@@ -42,6 +45,8 @@
 
         <div id="quill_editor" style="height:150px"></div>
         <input type="hidden" id="quill_html" name="article"></input>
+        <label>Si vous souhaitez ne pas publier et enregistrer un brouillon, cochez cette case :
+        <input type="checkbox" name="draft"></input><br />
         <button type="submit" class="btn btn-primary" style="margin-top:25px">Envoyer !</button>
     </form>
 </div>

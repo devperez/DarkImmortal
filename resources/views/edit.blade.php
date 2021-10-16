@@ -7,9 +7,6 @@
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
     <h2> Éditer l'article {{ $post->groupe }}</h2>
-    @error('article')
-    <div class="alert alert-danger">{{ $message }}</div>
-    @enderror
     <div class="container">
     <form action="{{ route('posts.update', $post->id) }}" method="POST" enctype="multipart/form-data">
         <label>Nom du groupe</label>
@@ -46,8 +43,6 @@
     
         <textarea name="article" class="container" style="height:150px">{{ $post->article }}</textarea>
         @csrf
-        <label>Si vous souhaitez ne pas publier et enregistrer un brouillon, cochez cette case :
-        <input type="checkbox" name="draft"></input><br />
         <button class="btn btn-primary" style="margin-top:50px">Valider les changements</button>
         @method('PUT')
     </form>

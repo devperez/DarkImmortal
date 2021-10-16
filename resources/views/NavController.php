@@ -16,8 +16,8 @@ class NavController extends Controller
 
     public function groupes()
     {
-        $posts = Post::where('draft', '=', 'off')->latest()->simplePaginate(6);
-        //dd($posts);
+        $posts = Post::latest()->simplePaginate(6);
+        
         return view('welcome', compact('posts'))->with(request()->input('page'));
         
     }
@@ -28,7 +28,7 @@ class NavController extends Controller
         $clip = $post->clip;
         $genre = $post->genre;
         $paroles = $post->paroles;
-        //dd($genre);
+	//dd($post);
         $alikes = Post::where('genre', "=", $genre)->take(3)->get();
         
 
@@ -61,8 +61,10 @@ class NavController extends Controller
     public function random()
     {
         $post = Post::all()->random(1)->first();
+        $genre = $post->genre;
+        $alikes = Post::where('genre', "=", $genre)->take(3)->get();
         // dd($post);
-        return view('random', compact('post'));
+        return view('random', compact('post','alikes'));
     }
 
     public function black()
