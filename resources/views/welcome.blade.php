@@ -73,6 +73,8 @@ $feed->handle_content_type();
         $link = str_replace('nbsp;', " ", $item->get_permalink());
         $text = str_replace('&amp;', " ", $text);
         $link = str_replace('&amp;', " ", $link);
+        $text = str_replace('&quot;', " ", $text);
+        $link = str_replace('&quot;', " ", $link);
 
         @endphp
 		    <div class="item">
