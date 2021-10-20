@@ -79,7 +79,7 @@ $feed->handle_content_type();
         @endphp
 		    <div class="item">
                 <div class="head">
-			        <h2><a class="permalink" href="$link"> {{ $text }}</a></h2>
+			        <h4><a class="permalink" href="$link"> {{ $text }}</a></h4>
                 </div>
                     <!-- <p>{!! $item->get_description() !!}</p> -->
 			    <p><small>Posted on {{ $item->get_date('j F Y | g:i a') }}</small></p>
