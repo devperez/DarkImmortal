@@ -153,3 +153,49 @@ a:hover {
 .paroles {
     border-left: grey 1px solid;
 }
+
+/*layout du feed rss*/
+
+footer {
+    display:grid;
+    grid-template-rows:min-content;
+    font:12px/1.4em Verdana, sans-serif;
+    color:black;
+    background-color:rgb(160,160,160);
+    width:100%;
+    height:200px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    margin: auto;
+    padding:10px;
+}
+
+.permalink {
+    color:white;
+    text-decoration:none;
+    padding:0 1px;
+}
+
+.permalink:hover {
+    color:white;
+    text-decoration:none;
+}
+
+div.header {
+    border-bottom:1px solid #999;
+}
+
+div.item {
+    padding:8px;
+    /* border-bottom:1px solid #999; */
+    margin : 5px;
+    background-color:rgb(160,160,160);
+    border-radius:15px;
+}
+
+.head {
+    background-color: #ff076e;
+    padding: 10px;
+    border-radius:15px;
+}
+

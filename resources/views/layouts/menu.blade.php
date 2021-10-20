@@ -16,6 +16,8 @@
         
     </head>
     <body>
+    <!-- <iframe style="position:absolute; right:0;" src="https://feed.mikle.com/widget/v2/150351/?preloader-text=Loading" height="108px" width="25%" class="fw-iframe" scrolling="no" frameborder="0"></iframe>    <iframe style="position:absolute; right:0;" src="https://feed.mikle.com/widget/v2/150351/?preloader-text=Loading" height="105px" width="25%" class="fw-iframe" scrolling="no" frameborder="0"></iframe> -->
+
         <div class="container">
             <a href=" {{ route('groupes') }}"><h1 class="hvr-underline-from-center sitename" style="font-size:3rem;">DARKIMMORTAL</h1></a>
         </div>
