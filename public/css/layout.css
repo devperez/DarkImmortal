@@ -157,17 +157,24 @@ a:hover {
 /*layout du feed rss*/
 
 footer {
-    display:grid;
-    grid-template-rows:min-content;
+    display:flex;
+    justify-content: center;
     font:12px/1.4em Verdana, sans-serif;
-    color:black;
-    background-color:rgb(160,160,160);
-    width:65%;
-    height:200px;
+    color:white;
+    width:25%;
+    height:100px;
     overflow-y: hidden;
     overflow-x: hidden;
-    margin: auto;
-    padding:10px;
+    margin: 0 auto;
+    padding:5px;
+    /* background-color: black; */
+}
+.footerwrapper {
+    width: 100%;
+    background-color: black;
+    padding-bottom: 20px;
+    border-radius: 0 0 15px 15px;
+    margin:auto;
 }
 
 .permalink {
@@ -187,9 +194,8 @@ div.header {
 
 div.item {
     padding:8px;
-    /* border-bottom:1px solid #999; */
     margin : 5px;
-    background-color:rgb(160,160,160);
+    background-color:black;
     border-radius:15px;
 }
 
@@ -197,5 +203,6 @@ div.item {
     background-color: #ff076e;
     padding: 10px;
     border-radius:15px;
+    margin: 0 auto;
 }
 

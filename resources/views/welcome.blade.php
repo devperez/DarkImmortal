@@ -2,6 +2,7 @@
 @extends('layouts.menu')
 
 @section('content')
+
 @php
 // For 1.3+:
 @require_once('php/autoloader.php');
@@ -11,10 +12,30 @@ $feed = new SimplePie();
  
 // Set the feed to process.
 $feed->set_feed_url('https://www.metalorgie.com/feed/news');
- 
+
+//Set the duration of the cache
+$feed->set_cache_duration(60);
+
 // Run SimplePie.
 $feed->init();
+
+// Create a new array to hold data in
+$new = array();
  
+// Loop through all of the items in the feed
+foreach ($feed->get_items() as $item) {
+ 
+	// Calculate 48 hours ago
+	$daybeforeyesterday = time() - (48*60*60);
+ 
+	// Compare the timestamp of the feed item with 48 hours ago.
+	if ($item->get_date('U') > $daybeforeyesterday) {
+ 
+		// If the item was posted within the last 48 hours, store the item in our array we set up.
+		$new[] = $item;
+	}
+}
+
 // This makes sure that the content is sent to the browser as text/html and the UTF-8 character set (since we didn't change it).
 $feed->handle_content_type();
 @endphp
@@ -60,33 +81,36 @@ $feed->handle_content_type();
         {{ $posts->links() }}
     </div>
     <hr>
-    <h3>{{ $feed->get_title() }}</h3>
+    <div class="footerwrapper row">
+        <h3 style="color:white; padding-left:10px;">{{ $feed->get_title() }}</h3>
 
-    <footer id="slideshow">
+        <footer id="slideshow" class="col-sm-12 col-lg-6">
 
 	    
-	<!--	Here, we'll loop through all of the items in the feed, and $item represents the current item in the loop.-->
+	<!--	Here, we'll loop through all of the items in the array of the feed, and $item represents the current item in the loop.-->
 	
-	    @foreach ($feed->get_items() as $item)
+	    @foreach ($new as $item)
         @php 
         $text = str_replace('nbsp;', " ", $item->get_title());
         $link = str_replace('nbsp;', " ", $item->get_permalink());
         $text = str_replace('&amp;', " ", $text);
+        $text = str_replace('amp;', " ", $text);
+        $link = str_replace('amp;', " ", $link);
         $link = str_replace('&amp;', " ", $link);
         $text = str_replace('&quot;', " ", $text);
         $link = str_replace('&quot;', " ", $link);
 
         @endphp
-		    <div class="item">
+		    <div class="item col-sm-12 col-lg-6">
                 <div class="head">
-			        <h4><a class="permalink" href="$link"> {{ $text }}</a></h4>
+			        <p><a class="permalink" href="{{ $link }}" target="_blank"> {{ $text }}</a></p>
                 </div>
-                    <!-- <p>{!! $item->get_description() !!}</p> -->
-			    <p><small>Posted on {{ $item->get_date('j F Y | g:i a') }}</small></p>
+			    <p><small>Posté le {{ $item->get_date('j M Y | g:i a') }}</small></p>
 		    </div>
  
 	    @endforeach
-    </footer>
+        </footer>
+    </div>
 <div>
 
 @endsection
@@ -100,9 +124,9 @@ $feed->handle_content_type();
 
     setInterval(function() { 
     $('#slideshow > div:first')
-    .fadeOut(1000)
+    .fadeOut(1)
     .next()
-    .fadeIn(1000)
+    .fadeIn(1)
     .end()
     .appendTo('#slideshow');
     }, 8000);
@@ -111,3 +135,4 @@ $feed->handle_content_type();
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<link href="{{ asset('css/layout.css') }}" rel="stylesheet">
